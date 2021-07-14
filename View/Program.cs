@@ -23,7 +23,7 @@ namespace View
 
         private static async Task UpdateApp()
         {
-            using (var mgr = new UpdateManager(@"C:\Users\ornel\source\repos\AppOficina"))
+            using (var mgr = new UpdateManager("https://github.com/OrnelasD-Rogers/OficinaApp"))
             {
                 await mgr.UpdateApp();
             }

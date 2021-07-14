@@ -26,8 +26,8 @@ namespace DataAccess.Properties {
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
-        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=tcp:DESKTOP-JDPDNB3\\SQLEXPRESS,49500;Initial Catalog=VendasOficina;Us" +
-            "er ID=OficinaUser;Password=babylu13")]
+        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=tcp:192.168.3.19\\ORNELASTEC,49500;DataBase=VendasOficina; User Id=Ofi" +
+            "cinaUser ; Password = oficinadoesculacho")]
         public string StringConVendas {
             get {
                 return ((string)(this["StringConVendas"]));
@@ -37,8 +37,8 @@ namespace DataAccess.Properties {
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
-        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=tcp:DESKTOP-JDPDNB3\\SQLEXPRESS,49500;DataBase=OficinaApp; User Id=Ofi" +
-            "cinaUser ; Password = babylu13;")]
+        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=tcp:192.168.3.19\\ORNELASTEC,49500;DataBase=OficinaApp; User Id=Oficin" +
+            "aUser ; Password = oficinadoesculacho")]
         public string StringConOficina {
             get {
                 return ((string)(this["StringConOficina"]));
