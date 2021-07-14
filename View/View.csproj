@@ -7,7 +7,7 @@
     <ProjectGuid>{05A0C721-90F5-45CB-999D-1F0E4AE6C47E}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <RootNamespace>View</RootNamespace>
-    <AssemblyName>View</AssemblyName>
+    <AssemblyName>OficinaApp</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
