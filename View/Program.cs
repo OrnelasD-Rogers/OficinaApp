@@ -14,20 +14,11 @@ namespace View
         /// </summary>
         [STAThread]
         static void Main()
-        {
-            UpdateApp();
+        {  
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new FormHome());
             
-        }
-
-        private static async Task  UpdateApp()
-        {
-            using (var mgr = UpdateManager.GitHubUpdateManager("https://github.com/OrnelasD-Rogers/OficinaApp"))
-            {
-                await mgr.Result.UpdateApp();
-            }
         }
 
     }
