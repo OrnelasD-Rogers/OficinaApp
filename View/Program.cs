@@ -15,10 +15,11 @@ namespace View
         [STAThread]
         static void Main()
         {
+            UpdateApp();
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new FormHome());
-            UpdateApp();
+            
         }
 
         private static async Task  UpdateApp()
