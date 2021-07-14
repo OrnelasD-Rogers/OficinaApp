@@ -47,6 +47,8 @@ namespace View
             this.label4 = new System.Windows.Forms.Label();
             this.cbStatusContato = new System.Windows.Forms.ComboBox();
             this.ep = new System.Windows.Forms.ErrorProvider(this.components);
+            this.dtpDataContato = new System.Windows.Forms.DateTimePicker();
+            this.label5 = new System.Windows.Forms.Label();
             this.panelTitleBar.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.ep)).BeginInit();
             this.SuspendLayout();
@@ -98,7 +100,7 @@ namespace View
             this.tbDialogo.Multiline = true;
             this.tbDialogo.Name = "tbDialogo";
             this.tbDialogo.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.tbDialogo.Size = new System.Drawing.Size(217, 86);
+            this.tbDialogo.Size = new System.Drawing.Size(217, 140);
             this.tbDialogo.TabIndex = 3;
             // 
             // label2
@@ -181,7 +183,7 @@ namespace View
             this.btnSalvarContato.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.btnSalvarContato.IconSize = 35;
             this.btnSalvarContato.ImageAlign = System.Drawing.ContentAlignment.BottomLeft;
-            this.btnSalvarContato.Location = new System.Drawing.Point(688, 103);
+            this.btnSalvarContato.Location = new System.Drawing.Point(689, 153);
             this.btnSalvarContato.Name = "btnSalvarContato";
             this.btnSalvarContato.Padding = new System.Windows.Forms.Padding(0, 3, 0, 0);
             this.btnSalvarContato.Size = new System.Drawing.Size(135, 55);
@@ -232,12 +234,31 @@ namespace View
             // 
             this.ep.ContainerControl = this;
             // 
+            // dtpDataContato
+            // 
+            this.dtpDataContato.Format = System.Windows.Forms.DateTimePickerFormat.Time;
+            this.dtpDataContato.Location = new System.Drawing.Point(673, 117);
+            this.dtpDataContato.Name = "dtpDataContato";
+            this.dtpDataContato.Size = new System.Drawing.Size(162, 29);
+            this.dtpDataContato.TabIndex = 33;
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(664, 93);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(123, 21);
+            this.label5.TabIndex = 34;
+            this.label5.Text = "Data do Contato";
+            // 
             // FormContato
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 21F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(47)))), ((int)(((byte)(138)))), ((int)(((byte)(187)))));
             this.ClientSize = new System.Drawing.Size(857, 220);
+            this.Controls.Add(this.label5);
+            this.Controls.Add(this.dtpDataContato);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.cbStatusContato);
             this.Controls.Add(this.cbContatante);
@@ -283,5 +304,7 @@ namespace View
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.ComboBox cbStatusContato;
         private System.Windows.Forms.ErrorProvider ep;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.DateTimePicker dtpDataContato;
     }
 }

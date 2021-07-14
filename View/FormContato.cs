@@ -100,7 +100,7 @@ namespace View
             Contatos contato = new Contatos
             {
                 
-                DataContato = DateTime.Now,
+                DataContato = dtpDataContato.Value,
                 IdTecnico = Convert.ToInt32(cbContatante.SelectedValue),
                 Id_Telefone = RetornaIdTel(cbNumero),
                 Id_Aparelho = idAparelho,
@@ -108,6 +108,7 @@ namespace View
                 Dialogo = tbDialogo.Text,
                 StatusLig = cbStatusContato.Text,
                 Id_Estado = Convert.ToInt32(Enum.Parse(typeof(Estado), cbEstado.Text))
+                
             };
             switch (cbTipoContato.Text)
             {
