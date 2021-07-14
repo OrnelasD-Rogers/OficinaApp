@@ -7,6 +7,7 @@ using System.Runtime.InteropServices;
 using System.Windows.Forms;
 using Entities;
 using Business;
+using Squirrel;
 
 namespace View
 {
@@ -166,7 +167,6 @@ namespace View
             WindowState = FormWindowState.Minimized;
 
         }
-
 
     }
 }

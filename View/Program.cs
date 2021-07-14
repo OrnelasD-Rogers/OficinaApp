@@ -21,12 +21,13 @@ namespace View
             UpdateApp();
         }
 
-        private static async Task UpdateApp()
+        private static async Task  UpdateApp()
         {
-            using (var mgr = new UpdateManager("https://github.com/OrnelasD-Rogers/OficinaApp"))
+            using (var mgr = UpdateManager.GitHubUpdateManager("https://github.com/OrnelasD-Rogers/OficinaApp"))
             {
-                await mgr.UpdateApp();
+                await mgr.Result.UpdateApp();
             }
         }
+
     }
 }
