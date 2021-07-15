@@ -4,6 +4,7 @@ using System.Runtime.InteropServices;
 using System.Windows.Forms;
 using Entities;
 using Business;
+using Business.Faturamento;
 
 namespace View
 {
@@ -76,6 +77,12 @@ namespace View
         {
             MetodosBd.InsertContato(contato);
             MetodosBd.UpdateAparelhoDataModificacao(idAparelho, contato.Id_Estado, DateTime.Now);
+            Estado estado = (Estado)contato.Id_Estado;
+            if (estado == Estado.NAP)
+            {
+                FaturarItens faturarItens = new FaturarItens();                
+                faturarItens.RetornaEstoque(idAparelho);
+            }            
             formAparelho.Inicializacao();
             this.Close();
             formAparelho.dgContatos.ResumeLayout();

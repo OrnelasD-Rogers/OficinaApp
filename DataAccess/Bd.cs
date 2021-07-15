@@ -725,7 +725,7 @@ namespace DataAccess
                             it.Produto,
                             it.ValorVenda,
                             it.Quantidade
-                            
+
                         });
                 }
             }
@@ -760,7 +760,7 @@ namespace DataAccess
 
         }
 
-        
+
 
 
 
@@ -956,9 +956,9 @@ namespace DataAccess
             }
         }
 
-        
 
-        
+
+
 
         /////////////////////////// Exclusões
 
@@ -1028,6 +1028,44 @@ namespace DataAccess
                     ConVendas().Open();
                     var idPag = ConVendas().ExecuteScalar(@"Exec SP_InsertPagamento @DataPag, @TipoPag, @Valor, @Categoria", new { p.DataPag, p.TipoPag, p.Valor, p.Categoria });
                     return Convert.ToInt32(idPag);
+                }
+            }
+            catch (Exception e)
+            {
+
+                throw new Exception(e.Message);
+            }
+        }
+
+        public void SubtractProdutoEstoque(Produtos p)
+        {
+            try
+            {
+                using (ConVendas())
+                {
+                    ConVendas().Open();
+                    ConVendas().Execute(@"Update Produtos Set Estoque = (Select Estoque from Produtos Where IdProduto = @IdProduto) - @Quantidade Where IdProduto = @IdProduto",
+                        new { p.IdProduto, p.Quantidade });
+
+                }
+            }
+            catch (Exception e)
+            {
+
+                throw new Exception(e.Message);
+            }
+        }
+
+        public void AddProdutoEstoque(Produtos p)
+        {
+            try
+            {
+                using (ConVendas())
+                {
+                    ConVendas().Open();
+                    ConVendas().Execute(@"Update Produtos Set Estoque = (Select Estoque from Produtos Where IdProduto = @IdProduto) + @Quantidade Where IdProduto = @IdProduto",
+                        new { p.IdProduto, p.Quantidade });
+
                 }
             }
             catch (Exception e)

@@ -76,6 +76,26 @@ namespace View
             metodosDataGrid.FillDataGrid(dgItens, ItensList);
         }
 
+        private void EditaEstoque(int qtdAtual, Produtos prod)
+        {
+            Produtos item = new Produtos
+            {
+                IdProduto = prod.IdProduto,
+                Quantidade = prod.Quantidade
+            };
+            //Se tiver colocado uma quantidade maior na edicao
+            if (item.Quantidade > qtdAtual)
+            {
+                item.Quantidade = item.Quantidade - qtdAtual;
+                MetodosBd.SubtractProdutoEstoque(item);
+            }
+            else
+            {
+                item.Quantidade = qtdAtual - item.Quantidade;
+                MetodosBd.AddProdutoEstoque(item);
+            }
+        }
+
         //--------------------------------------- Metodos DataGrid --------------------------//
 
 
@@ -90,6 +110,7 @@ namespace View
                 {
                     switch (prodSelecionado.IdProduto)
                     {
+                        //Caso seja mão de obra
                         case 9999:
                             pnAddMaoDeObra.Location = pnAddItem.Location;
                             pnAddMaoDeObra.Show();
@@ -133,16 +154,18 @@ namespace View
             //Se qtd > 0, Então o produto está sendo Editado
             if (qtd > 0)
             {
-
+                int qtdAtual = ItensList[indexProd].Quantidade;
                 ItensList[indexProd].Quantidade = Convert.ToInt32(nudQtd.Value);
                 ItensList[indexProd].CalculcaSubTotal();
                 //Se o produto tiver um IdItem != 0, então é editado sua quantidade no banco de dados
                 try
                 {
                     MetodosBd.UpdateQuantidadeItem(ItensList[indexProd]);
+                    EditaEstoque(qtdAtual, ItensList[indexProd]);
                 }
                 catch (Exception) { }
-
+                //ItensList.Remove(ItensList[indexProd]);
+                // ItensList.Add(ItensList[indexProd]);
                 metodosDataGrid.FillDataGrid(dgItens, ItensList);
                 pnAddItem.Hide();
 
@@ -247,12 +270,13 @@ namespace View
                 indexProd = dgItens.SelectedRows[0].Index;
                 switch (prodSelecionado.IdProduto)
                 {
+                    //Caso seja mão de obra
                     case 9999:
                         pnAddMaoDeObra.Location = pnAddItem.Location;
                         tbMaoDeObra.Text = ItensList[indexProd].ValorVenda.ToString("C2");
                         pnAddMaoDeObra.Show();
                         break;
-                        //Caso seja um Adiantamento(IdItem = 8888) não faz nada
+                    //Caso seja um Adiantamento(IdItem = 8888) não faz nada
                     case 8888:
                         break;
                     //Caso seja um Pagamento(IdItem = 1010) não faz nada
@@ -282,7 +306,7 @@ namespace View
             }
             formAparelho.Inicializacao();
             this.Close();
-            
+
         }
     }
 }

@@ -26,8 +26,8 @@ namespace DataAccess.Properties {
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
-        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=tcp:192.168.3.19\\ORNELASTEC,49500;DataBase=VendasOficina; User Id=Ofi" +
-            "cinaUser ; Password = oficinadoesculacho")]
+        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=tcp:192.168.3.19\\ORNELASTEC,49500;Initial Catalog=VendasOficina;User " +
+            "ID=OficinaUser;Password=oficinadoesculacho")]
         public string StringConVendas {
             get {
                 return ((string)(this["StringConVendas"]));

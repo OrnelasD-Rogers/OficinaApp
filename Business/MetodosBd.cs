@@ -223,9 +223,22 @@ namespace Business
             {
                 Bd bd = new Bd();
                 bd.InsertItem(item, idAparelho);
+                //Remove a quantidade de intes do estoque
+                bd.SubtractProdutoEstoque(item);
             }            
         }
 
+        public static void AddProdutoEstoque(Produtos produto)
+        {
+            Bd bd = new Bd();
+            bd.AddProdutoEstoque(produto);
+        }
+
+        public static void SubtractProdutoEstoque(Produtos produto)
+        {
+            Bd bd = new Bd();
+            bd.SubtractProdutoEstoque(produto);
+        }
 
         ////////////////////////
         public static int InsertAparelho(Aparelhos aparelhos)

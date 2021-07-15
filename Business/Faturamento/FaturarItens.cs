@@ -19,11 +19,15 @@ namespace Business.Faturamento
                 item.CalculcaSubTotal();
             }
             ItensList = itensList;
-            
+        }
+
+        public FaturarItens()
+        {
+
         }
 
         public double ValorTotal()
-        { 
+        {
             return ItensList.Where(x => x.Produto != "Adiantamento" && x.Produto != "Pagamento").Sum(x => x.SubTotal);
         }
 
@@ -50,6 +54,32 @@ namespace Business.Faturamento
             }
 
             return itensBd;
+        }
+
+        public void RetornaEstoque(int idAparelho)
+        {
+            List<Produtos> itens = MetodosBd.GetItensByIdAp(idAparelho);
+            foreach (Produtos item in itens)
+            {
+
+                switch (item.IdProduto)
+                {
+                    //Caso seja mão de obra(IdItem = 9999) não faz nada
+                    case 9999:
+                        break;
+                    //Caso seja um Adiantamento(IdItem = 8888) não faz nada
+                    case 8888:
+                        break;
+                    //Caso seja um Pagamento(IdItem = 1010) não faz nada
+                    case 1010:
+                        break;
+                        //Adiciona a Quantidade de Itens ao Estoque
+                    default:
+                        MetodosBd.AddProdutoEstoque(item);
+                        break;
+                }
+
+            }
         }
 
     }
