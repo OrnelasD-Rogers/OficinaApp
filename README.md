@@ -1,10 +1,8 @@
-# OficinaApp
-Aplicação de Gerenciamento para uma oficina de Eletrotécnica
 ## Sistema de Gerenciamento para Oficina de Eletrotécnica
 
 
 
-Um projeto de aprendizado para ser implementado em uma Oficina de Eletrotécnica qual implementa um CRUD, e separações de aparelhos por cliente e Status dos aparelhos.
+Um projeto de aprendizado para ser implementado em uma Oficina de Eletrotécnica qual possui um CRUD, e separações de aparelhos por cliente e Status dos aparelhos.
 
 
 
