@@ -15,10 +15,10 @@ cd "diretorio de sua preferencia"
 git clone https://github.com/OrnelasD-Rogers/OficinaApp.git
 ```
 
-
+Se faz também necessário a criação dos bancos de dados onde os Scripts podem ser encontrados em : https://github.com/OrnelasD-Rogers/OficinaApp/tree/main/Scripts%20do%20Banco
 
 ## Deploy e Publicação
 
-Para baixar a versão mais recente do projeto basta acessar:
+Para baixar a versão mais recente do executável do projeto basta acessar:
 
 https://github.com/OrnelasD-Rogers/OficinaApp/releases
