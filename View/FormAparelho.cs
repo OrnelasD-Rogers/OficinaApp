@@ -246,6 +246,7 @@ namespace View
             tbEstado.Text = aparelhoInfo.Estado.ToString();
             tbProblema.Text = aparelhoInfo.Problema;
             tbObservacao.Text = aparelhoInfo.Observacao;
+            tbOrc.Text = aparelhoInfo.Orcamento;
 
             tbCor.Text = AparelhoInfo.Cor;
             cbTecnico.Text = aparelhoInfo.NomeTecnico;

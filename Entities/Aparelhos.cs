@@ -115,7 +115,7 @@ namespace Entities
             StringBuilder sb = new StringBuilder();
             sb.AppendLine($"Por Favor, Anote os Dados do Aparelho: ");
             sb.AppendLine($"Id do Aparelho: {IdAparelho}");
-            sb.AppendLine($"Data de Entrada: {DateTime.Now.ToShortDateString()}");            
+            sb.AppendLine($"Data de Entrada: {Entrada.ToShortDateString()}");            
 
             return sb.ToString();
         }
