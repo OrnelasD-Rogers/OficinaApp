@@ -26,12 +26,6 @@ namespace View
         int idAparelho;
         private double aPagar { get; set; }
 
-        public FormAparelho()
-        {
-            InitializeComponent();
-            Inicializacao();
-        }
-
         public FormAparelho(FormGridPrincipal frmGP, int idAparelho)
         {
             this.DoubleBuffered = true;
@@ -84,6 +78,7 @@ namespace View
                 Orcamento = tbOrc.Text.Trim(),
                 Urgencia = chbUrgencia.Checked,
                 Revisao = chbRevisao.Checked,
+                Entrada = dtpDataEntrada.Value
             };
 
             if (apEditado.ValidaIdTec(cbTecnico, ep))
@@ -195,8 +190,7 @@ namespace View
         }
 
         private void LimparCampos()
-        {
-            tbEntrada.Clear();
+        {            
             tbSaida.Clear();
             tbEstado.Clear();
             tbTipo.Clear();
@@ -213,7 +207,7 @@ namespace View
 
         private void EdicaoBoxes(bool editar)
         {
-            tbEntrada.Enabled = !editar;
+            dtpDataEntrada.Enabled = editar;
             tbSaida.Enabled = !editar;
             tbEstado.Enabled = !editar;
             tbTipo.Enabled = !editar;
@@ -238,7 +232,7 @@ namespace View
             LimparCampos();
             lblIdAp.Text = "Id Aparelho: " + Convert.ToString(aparelhoInfo.IdAparelho);
             lblCli.Text = "Cliente: " + aparelhoInfo.Nome;
-            tbEntrada.Text = Convert.ToString(aparelhoInfo.Entrada);
+            dtpDataEntrada.Value = aparelhoInfo.Entrada;
             tbSaida.Text = Convert.ToString(aparelhoInfo.Saida);
             tbTipo.Text = aparelhoInfo.Tipo;
             tbMarca.Text = aparelhoInfo.Marca;

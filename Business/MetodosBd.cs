@@ -331,10 +331,10 @@ namespace Business
             bd.UpdateAparelho(aparelho);
         }
 
-        public static void UpdateEstadoAparelho(int idAparelho, DateTime dataAlteracao, Estado novoStatus)
+        public static void UpdateEstadoAparelho(int idAparelho, DateTime dataAlteracao, DateTime dataSaida, Estado novoStatus)
         {
             Bd bd = new Bd();
-            bd.UpdateEstadoAparelho(idAparelho, novoStatus, dataAlteracao);
+            bd.UpdateEstadoAparelho(idAparelho, novoStatus, dataAlteracao, dataSaida);
         }
 
     }

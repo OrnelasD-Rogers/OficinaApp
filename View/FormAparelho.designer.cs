@@ -70,7 +70,6 @@ namespace View
             this.lblTipo = new System.Windows.Forms.Label();
             this.tbTipo = new System.Windows.Forms.TextBox();
             this.lblEntrada = new System.Windows.Forms.Label();
-            this.tbEntrada = new System.Windows.Forms.TextBox();
             this.lblSaida = new System.Windows.Forms.Label();
             this.tbSaida = new System.Windows.Forms.TextBox();
             this.btnAddContato = new FontAwesome.Sharp.IconButton();
@@ -102,6 +101,7 @@ namespace View
             this.bgwTabContatos = new System.ComponentModel.BackgroundWorker();
             this.bgwTabAparelhos = new System.ComponentModel.BackgroundWorker();
             this.ep = new System.Windows.Forms.ErrorProvider(this.components);
+            this.dtpDataEntrada = new System.Windows.Forms.DateTimePicker();
             this.panelTitleBar.SuspendLayout();
             this.pnItens.SuspendLayout();
             this.pnPagamento.SuspendLayout();
@@ -381,6 +381,7 @@ namespace View
             // gbAparelho
             // 
             this.gbAparelho.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.gbAparelho.Controls.Add(this.dtpDataEntrada);
             this.gbAparelho.Controls.Add(this.cbTecnico);
             this.gbAparelho.Controls.Add(this.chbUrgencia);
             this.gbAparelho.Controls.Add(this.chbRevisao);
@@ -406,7 +407,6 @@ namespace View
             this.gbAparelho.Controls.Add(this.lblTipo);
             this.gbAparelho.Controls.Add(this.tbTipo);
             this.gbAparelho.Controls.Add(this.lblEntrada);
-            this.gbAparelho.Controls.Add(this.tbEntrada);
             this.gbAparelho.Controls.Add(this.lblSaida);
             this.gbAparelho.Controls.Add(this.tbSaida);
             this.gbAparelho.Font = new System.Drawing.Font("Ebrima", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -661,15 +661,6 @@ namespace View
             this.lblEntrada.Size = new System.Drawing.Size(63, 21);
             this.lblEntrada.TabIndex = 50;
             this.lblEntrada.Text = "Entrada";
-            // 
-            // tbEntrada
-            // 
-            this.tbEntrada.Location = new System.Drawing.Point(21, 87);
-            this.tbEntrada.Margin = new System.Windows.Forms.Padding(2);
-            this.tbEntrada.Name = "tbEntrada";
-            this.tbEntrada.ReadOnly = true;
-            this.tbEntrada.Size = new System.Drawing.Size(168, 29);
-            this.tbEntrada.TabIndex = 49;
             // 
             // lblSaida
             // 
@@ -997,6 +988,15 @@ namespace View
             // 
             this.ep.ContainerControl = this;
             // 
+            // dtpDataEntrada
+            // 
+            this.dtpDataEntrada.Enabled = false;
+            this.dtpDataEntrada.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dtpDataEntrada.Location = new System.Drawing.Point(21, 86);
+            this.dtpDataEntrada.Name = "dtpDataEntrada";
+            this.dtpDataEntrada.Size = new System.Drawing.Size(168, 29);
+            this.dtpDataEntrada.TabIndex = 79;
+            // 
             // FormAparelho
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1056,7 +1056,6 @@ namespace View
         private System.Windows.Forms.Label lblTipo;
         private System.Windows.Forms.TextBox tbTipo;
         private System.Windows.Forms.Label lblEntrada;
-        private System.Windows.Forms.TextBox tbEntrada;
         private System.Windows.Forms.Label lblSaida;
         private System.Windows.Forms.TextBox tbSaida;
         private FontAwesome.Sharp.IconButton btnAddContato;
@@ -1101,5 +1100,6 @@ namespace View
         private System.Windows.Forms.DataGridViewTextBoxColumn Revisao;
         private System.Windows.Forms.DataGridViewTextBoxColumn Urgencia;
         public System.Windows.Forms.Panel pnItens;
+        private System.Windows.Forms.DateTimePicker dtpDataEntrada;
     }
 }

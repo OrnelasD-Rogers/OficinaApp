@@ -139,7 +139,7 @@ namespace View
                         };
                         Estado estado = SelecionaEstado(cbTipoSaida.Text);
                         TipoPagamento(novoPag);
-                        MetodosBd.UpdateEstadoAparelho(aparelhoInfo.IdAparelho, DateTime.Now, estado);
+                        MetodosBd.UpdateEstadoAparelho(aparelhoInfo.IdAparelho, DateTime.Now, DateTime.Now, estado);
                         MetodosBd.InsertItem(pagamento, aparelhoInfo.IdAparelho);
                         formAparelho.ChamaMessageBoxOk("Pagamento e saida do Aparelho Finalizados");
                         formAparelho.Inicializacao();
@@ -158,9 +158,9 @@ namespace View
                         };
                         Estado estado = SelecionaEstado(cbTipoSaida.Text);
                         TipoPagamento(novoPag);
-                        MetodosBd.UpdateEstadoAparelho(aparelhoInfo.IdAparelho, DateTime.Now, estado);
+                        MetodosBd.UpdateEstadoAparelho(aparelhoInfo.IdAparelho, DateTime.Now, DateTime.Now, estado);
                         MetodosBd.InsertItem(pagamento, aparelhoInfo.IdAparelho);
-                        formAparelho.ChamaMessageBoxOk("Pagamento e saida do Aparelho Finalizados");
+                        formAparelho.ChamaMessageBoxOk("Saida do Aparelho Finalizada");
                         formAparelho.Inicializacao();
                         this.Close();
                     }

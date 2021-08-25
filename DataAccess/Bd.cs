@@ -792,7 +792,7 @@ namespace DataAccess
                 using (ConOficina())
                 {
                     ConOficina().Open();
-                    ConOficina().Execute(@"Update Aparelhos Set Problema = @Problema, Observacao = @Observacao, Orcamento = @Orcamento, Id_Tecnico = @Id_Tecnico, Urgencia = @Urgencia, Revisao = @Revisao Where IdAparelho = @IdAparelho", new { ap.IdAparelho, ap.Observacao, ap.Orcamento, ap.Problema, ap.Id_Tecnico, ap.Urgencia, ap.Revisao, ap.DataModificacao });
+                    ConOficina().Execute(@"Update Aparelhos Set Entrada = @Entrada, Problema = @Problema, Observacao = @Observacao, Orcamento = @Orcamento, Id_Tecnico = @Id_Tecnico, Urgencia = @Urgencia, Revisao = @Revisao Where IdAparelho = @IdAparelho", new { ap.IdAparelho, ap.Observacao, ap.Orcamento, ap.Problema, ap.Id_Tecnico, ap.Urgencia, ap.Revisao, ap.DataModificacao, ap.Entrada });
                 }
             }
             catch (Exception e)
@@ -913,14 +913,14 @@ namespace DataAccess
             }
         }
 
-        public void UpdateEstadoAparelho(int idAp, Estado estado, DateTime dataAlter)
+        public void UpdateEstadoAparelho(int idAp, Estado estado, DateTime dataAlter, DateTime dataSaida)
         {
             try
             {
                 using (ConOficina())
                 {
                     ConOficina().Open();
-                    ConOficina().Execute(@"Update Aparelhos Set Id_Estado = @estado, DataModificacao = @dataAlter Where IdAparelho =@idAp", new { idAp, estado, dataAlter });
+                    ConOficina().Execute(@"Update Aparelhos Set Id_Estado = @estado, DataModificacao = @dataAlter, Saida = @dataSaida Where IdAparelho =@idAp", new { idAp, estado, dataAlter, dataSaida });
                 }
             }
             catch (Exception e)
