@@ -53,6 +53,7 @@ namespace View
             metodosGrid.FormataTelefone_CellFormatting(dgHome, 3, e);            
         }
 
+        //Pinta a linha do grid caso o campo urgencia ou revisao seja true
         private void dgHome_RowPrePaint(object sender, DataGridViewRowPrePaintEventArgs e)
         {
             metodosGrid.RowPrePainting(dgHome, e, 11, 12);       

@@ -136,6 +136,25 @@ namespace View
                     }
                     break;
 
+                case "Nome":
+                    if (ultimaCol == "Nome")
+                    {
+                        auxList = (List<Vw_GridPrincipal>)dataGrid.DataSource;
+                        dataGrid.DataSource = auxList.OrderByDescending(s => s.Nome).ToList();
+                        dataGrid.Update();
+                        dataGrid.Refresh();
+                        ultimaCol = string.Empty;
+                    }
+                    else
+                    {
+                        auxList = (List<Vw_GridPrincipal>)dataGrid.DataSource;
+                        dataGrid.DataSource = auxList.OrderBy(s => s.Nome).ToList();
+                        dataGrid.Update();
+                        dataGrid.Refresh();
+                        ultimaCol = "Nome";
+                    }
+                    break;
+
                 case "Status":
                     if (ultimaCol == "Status")
                     {
@@ -154,16 +173,73 @@ namespace View
                         ultimaCol = "Status";
                     }
                     break;
+
+                case "Tipo":
+                    if (ultimaCol == "Tipo")
+                    {
+                        auxList = (List<Vw_GridPrincipal>)dataGrid.DataSource;
+                        dataGrid.DataSource = auxList.OrderByDescending(s => s.Tipo).ToList();
+                        dataGrid.Update();
+                        dataGrid.Refresh();
+                        ultimaCol = string.Empty;
+                    }
+                    else
+                    {
+                        auxList = (List<Vw_GridPrincipal>)dataGrid.DataSource;
+                        dataGrid.DataSource = auxList.OrderBy(s => s.Tipo).ToList();
+                        dataGrid.Update();
+                        dataGrid.Refresh();
+                        ultimaCol = "Tipo";
+                    }
+                    break;
+
+                case "Marca":
+                    if (ultimaCol == "Marca")
+                    {
+                        auxList = (List<Vw_GridPrincipal>)dataGrid.DataSource;
+                        dataGrid.DataSource = auxList.OrderByDescending(s => s.Marca).ToList();
+                        dataGrid.Update();
+                        dataGrid.Refresh();
+                        ultimaCol = string.Empty;
+                    }
+                    else
+                    {
+                        auxList = (List<Vw_GridPrincipal>)dataGrid.DataSource;
+                        dataGrid.DataSource = auxList.OrderBy(s => s.Marca).ToList();
+                        dataGrid.Update();
+                        dataGrid.Refresh();
+                        ultimaCol = "Marca";
+                    }
+                    break;
+
+                case "Modelo":
+                    if (ultimaCol == "Modelo")
+                    {
+                        auxList = (List<Vw_GridPrincipal>)dataGrid.DataSource;
+                        dataGrid.DataSource = auxList.OrderByDescending(s => s.Modelo).ToList();
+                        dataGrid.Update();
+                        dataGrid.Refresh();
+                        ultimaCol = string.Empty;
+                    }
+                    else
+                    {
+                        auxList = (List<Vw_GridPrincipal>)dataGrid.DataSource;
+                        dataGrid.DataSource = auxList.OrderBy(s => s.Modelo).ToList();
+                        dataGrid.Update();
+                        dataGrid.Refresh();
+                        ultimaCol = "Modelo";
+                    }
+                    break;
             }
         }
 
-        public void RowPrePainting(DataGridView dataGrid, DataGridViewRowPrePaintEventArgs e, int cellRev, int cellUrg)
+        public void RowPrePainting(DataGridView dataGrid, DataGridViewRowPrePaintEventArgs e, int cellRevisao, int cellUrgencia)
         {
-            if (Convert.ToBoolean(dataGrid.Rows[e.RowIndex].Cells[cellRev].Value) == true)
+            if (Convert.ToBoolean(dataGrid.Rows[e.RowIndex].Cells[cellRevisao].Value) == true)
             {
                 dataGrid.Rows[e.RowIndex].DefaultCellStyle.BackColor = Color.OrangeRed;
             }
-            if (Convert.ToBoolean(dataGrid.Rows[e.RowIndex].Cells[cellUrg].Value) == true)
+            if (Convert.ToBoolean(dataGrid.Rows[e.RowIndex].Cells[cellUrgencia].Value) == true)
             {
                 dataGrid.Rows[e.RowIndex].DefaultCellStyle.BackColor = Color.Yellow;
             }

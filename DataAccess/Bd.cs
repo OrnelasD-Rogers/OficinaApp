@@ -16,12 +16,20 @@ namespace DataAccess
     {
         private SqlConnection ConOficina()
         {
-            return new SqlConnection(Settings.Default.StringConOficina);
+            //Producao
+            // return new SqlConnection(Settings.Default.StringConOficina);
+            
+            //Teste
+            return new SqlConnection(ConnectionStrings.OficinaAppTeste);
         }
 
         private SqlConnection ConVendas()
         {
-            return new SqlConnection(Settings.Default.StringConVendas);
+            //Producao
+            // return new SqlConnection(Settings.Default.StringConVendas);
+
+            //Teste
+            return new SqlConnection(ConnectionStrings.VendasTeste);
         }
 
         public List<Telefones> GetTelefonesByIdCli(int idCli)
