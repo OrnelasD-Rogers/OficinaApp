@@ -324,13 +324,13 @@ namespace View
             this.cbTipo.FormattingEnabled = true;
             this.cbTipo.Items.AddRange(new object[] {
             "Ferro",
-            "Lavadora",
-            "Secador",
             "Forno Eletrico",
-            "Panela Eletrica",
+            "Lavadora",
             "Liquidificador",
+            "Microondas",
             "Mixer",
-            "Microondas"});
+            "Panela Eletrica",
+            "Secador"});
             this.cbTipo.Location = new System.Drawing.Point(366, 30);
             this.cbTipo.Name = "cbTipo";
             this.cbTipo.Size = new System.Drawing.Size(121, 29);
@@ -353,13 +353,13 @@ namespace View
             this.cbModelo.Font = new System.Drawing.Font("Ebrima", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cbModelo.FormattingEnabled = true;
             this.cbModelo.Items.AddRange(new object[] {
-            "XR15",
-            "9928B7",
-            "AM5FR4",
             "258897",
             "698554",
+            "9928B7",
             "ABCEFG",
-            "H3X4D3C1M41"});
+            "AM5FR4",
+            "H3X4D3C1M41",
+            "XR15"});
             this.cbModelo.Location = new System.Drawing.Point(674, 30);
             this.cbModelo.Name = "cbModelo";
             this.cbModelo.Size = new System.Drawing.Size(121, 29);
@@ -383,13 +383,13 @@ namespace View
             this.cbMarca.FormattingEnabled = true;
             this.cbMarca.Items.AddRange(new object[] {
             "Arno",
+            "BabyLiss",
             "Britania",
+            "Electrolux",
             "Mallory",
             "Mondial",
-            "Electrolux",
             "Samsung",
-            "Taiff",
-            "BabyLiss"});
+            "Taiff"});
             this.cbMarca.Location = new System.Drawing.Point(520, 30);
             this.cbMarca.Name = "cbMarca";
             this.cbMarca.Size = new System.Drawing.Size(121, 29);

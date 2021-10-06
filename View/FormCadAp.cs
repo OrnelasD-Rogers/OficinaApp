@@ -1,13 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Text.RegularExpressions;
-using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Linq;
 using Entities;
 using Business;
 using FontAwesome.Sharp;
@@ -55,14 +51,15 @@ namespace View
             modelos = MetodosBd.GetModelos();
         }
 
-        //Aplica as listas aos controles
+        //Ordena e aplica as listas aos controles
         private void backgroundWorker1_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
-            cbCor1.DataSource = coresList1;
-            cbCor2.DataSource = coresList2;
-            cbTipo.DataSource = tipos;
-            cbMarca.DataSource = marcas;
-            cbModelo.DataSource = modelos;
+
+            cbCor1.DataSource = coresList1.OrderBy(c => c.Cor).ToList();
+            cbCor2.DataSource = coresList2.OrderBy(c => c.Cor).ToList();
+            cbTipo.DataSource = tipos.OrderBy(t => t.Tipo).ToList();          
+            cbMarca.DataSource = marcas.OrderBy(m => m.Marca).ToList();
+            cbModelo.DataSource = modelos.OrderBy(m => m.Modelo).ToList();
             ApagaTextoComboBoxes();
         }
 
@@ -222,6 +219,7 @@ namespace View
             switch (res)
             {     
                 case DialogResult.Yes:
+                    InicializacaoBase();
                     LimparCampos();                    
                     break;                
                 default:
