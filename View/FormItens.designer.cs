@@ -321,7 +321,7 @@ namespace View
             this.btnAceitarQtd.Size = new System.Drawing.Size(44, 29);
             this.btnAceitarQtd.TabIndex = 57;
             this.btnAceitarQtd.UseVisualStyleBackColor = true;
-            this.btnAceitarQtd.Click += new System.EventHandler(this.btnAceitar_Click);
+            this.btnAceitarQtd.Click += new System.EventHandler(this.btnAceitarQTD_Click);
             // 
             // nudQtd
             // 

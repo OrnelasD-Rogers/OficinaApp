@@ -56,6 +56,22 @@ namespace Business.Faturamento
             return itensBd;
         }
 
+        //Pega o produts que é mão de obra caso siga a regra para ser atualizado
+        public Produtos UpdateMaoDeObra()
+        {
+            
+            foreach (Produtos item in ItensList)
+            {
+                //Se o IdItem for != 0 e o IdProduto == 9999 então significa que o produto é uma Mão de Obra Sendo editada
+                if (item.IdItem != 0 && item.IdProduto == 9999)
+                {
+                    return item;
+                }
+            }
+
+            return null;
+        }
+
         public void RetornaEstoque(int idAparelho)
         {
             List<Produtos> itens = MetodosBd.GetItensByIdAp(idAparelho);

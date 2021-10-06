@@ -19,7 +19,9 @@ namespace View
         public FormAparelho frmAparelho { get; set; }
         public Vw_AparelhoInfo Aparelho { get; set; }
         Produtos prodSelecionado = new Produtos();
+        //Produtos no estoque
         private List<Produtos> ProdutosList { get; set; } = new List<Produtos>();
+        //Lista de produtos já atribuidos ao aparelho
         private List<Produtos> ItensList { get; set; } = new List<Produtos>();
 
         FormAparelho formAparelho;
@@ -27,7 +29,7 @@ namespace View
         int idAparelho;
         int indexProd = 0;
 
-
+        //Adiciona Itens
         public FormItens(FormAparelho formAparelho, int idAparelho)
         {
             InitializeComponent();
@@ -36,6 +38,7 @@ namespace View
             Inicializacao();
         }
 
+        //Edita Itens
         public FormItens(FormAparelho formAparelho, List<Produtos> itens, int idAparelho)
         {
             InitializeComponent();
@@ -65,11 +68,14 @@ namespace View
             metodosDataGrid.FillDataGrid(dgProdutos, ProdutosList);
         }
 
+        //Adiciona itens a lista ItensList e preenche o datagrid dgItens
         private void AddListaGridItens(DataGridView dataGrid, Produtos prod)
         {
             ItensList.Add(prod);
             metodosDataGrid.FillDataGrid(dgItens, ItensList);
         }
+
+        //Remove itens da lista ItensList e preenche o datagrid dgItens
         private void RemoveListaGridItens(DataGridView dataGrid, Produtos prod)
         {
             ItensList.Remove(prod);
@@ -148,7 +154,7 @@ namespace View
 
         //-------------------------------------------  Eventos Botões  ----------------------------------------//
 
-        private void btnAceitar_Click(object sender, EventArgs e)
+        private void btnAceitarQTD_Click(object sender, EventArgs e)
         {
             decimal qtd = Convert.ToDecimal(prodSelecionado.Quantidade);
             //Se qtd > 0, Então o produto está sendo Editado
@@ -235,7 +241,7 @@ namespace View
 
         private void btnAceitarMDO_Click(object sender, EventArgs e)
         {
-
+            //Edita valor mão de obra
             if (ItensList.Count > 0 && ItensList[indexProd].Produto == "Mão de Obra")
             {
                 ItensList[indexProd].ValorVenda = Convert.ToDouble(tbMaoDeObra.Text.Replace("R$ ", ""));
@@ -244,6 +250,7 @@ namespace View
                 pnAddMaoDeObra.Hide();
 
             }
+            //Adiciona nova mão de obra
             else
             {
                 double MaoDeObra = Convert.ToDouble(tbMaoDeObra.Text.Replace("R$ ", ""));
@@ -292,11 +299,19 @@ namespace View
 
         private void btnSalvarLista_Click(object sender, EventArgs e)
         {
-            //Faz a Seleção dos itens que irão apra o Bd
+            
             FaturarItens faturarItens = new FaturarItens(ItensList);
             List<Produtos> produtos2Bd = new List<Produtos>();
+            Produtos maoDeObra = new Produtos();
 
-            //Faz a Seleção dos itens que irão apra o Bd
+            //Atualiza Mão de Obra caso já exista alguma adicionada(IdItem != 0)
+            maoDeObra = faturarItens.UpdateMaoDeObra();
+            if (maoDeObra != null)
+            {
+                MetodosBd.UpdateMaoDeObra(maoDeObra);
+            }
+
+            //Faz a Seleção dos novos itens que irão apra o Bd
             produtos2Bd = faturarItens.Itens2Bd();
             //Se a Lista.Count > 0, Adiciona os itens ao Bd
             if (produtos2Bd.Count > 0)
@@ -304,6 +319,8 @@ namespace View
                 MetodosBd.InsertItens(produtos2Bd, idAparelho);
                 formAparelho.ChamaMessageBoxOk("Produtos Adicionados");
             }
+
+            
             formAparelho.Inicializacao();
             this.Close();
 

@@ -248,6 +248,11 @@ namespace View
             chbUrgencia.Checked = aparelhoInfo.Urgencia;
         }
 
+        private void AlteraNomeForm(Vw_AparelhoInfo aparelhoInfo)
+        {
+            this.Text = $"ID: {aparelhoInfo.IdAparelho}, { aparelhoInfo.Nome }";
+        }
+
         private void ConfiguraTecnicos()
         {
             cbTecnico.DataSource = tecnicos;
@@ -416,6 +421,7 @@ namespace View
 
         private void bgwPadrao_RunWorkerCompleted(object sender, System.ComponentModel.RunWorkerCompletedEventArgs e)
         {
+            AlteraNomeForm(AparelhoInfo);
             PreencheListView(ItensList);
             PreencheBoxes(AparelhoInfo);
             TravaControles(AparelhoInfo);
