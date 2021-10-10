@@ -33,6 +33,7 @@ namespace View
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormGridPrincipal));
             this.tb_Pesquisa = new System.Windows.Forms.TextBox();
             this.btnPesquisar = new FontAwesome.Sharp.IconButton();
             this.btnVoltar = new FontAwesome.Sharp.IconButton();
@@ -305,6 +306,7 @@ namespace View
             this.Controls.Add(this.tb_Pesquisa);
             this.ForeColor = System.Drawing.Color.White;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "FormGridPrincipal";
             this.Text = "Home";
             ((System.ComponentModel.ISupportInitialize)(this.dgHome)).EndInit();

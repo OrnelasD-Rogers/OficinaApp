@@ -30,6 +30,7 @@ namespace View
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormAparelho));
             this.panelTitleBar = new System.Windows.Forms.Panel();
             this.btn_Minimize = new FontAwesome.Sharp.IconButton();
             this.btn_Close = new FontAwesome.Sharp.IconButton();
@@ -47,6 +48,7 @@ namespace View
             this.Quantidade = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.SubTotal = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.gbAparelho = new System.Windows.Forms.GroupBox();
+            this.dtpDataEntrada = new System.Windows.Forms.DateTimePicker();
             this.cbTecnico = new System.Windows.Forms.ComboBox();
             this.chbUrgencia = new System.Windows.Forms.CheckBox();
             this.chbRevisao = new System.Windows.Forms.CheckBox();
@@ -101,7 +103,6 @@ namespace View
             this.bgwTabContatos = new System.ComponentModel.BackgroundWorker();
             this.bgwTabAparelhos = new System.ComponentModel.BackgroundWorker();
             this.ep = new System.Windows.Forms.ErrorProvider(this.components);
-            this.dtpDataEntrada = new System.Windows.Forms.DateTimePicker();
             this.panelTitleBar.SuspendLayout();
             this.pnItens.SuspendLayout();
             this.pnPagamento.SuspendLayout();
@@ -419,6 +420,15 @@ namespace View
             this.gbAparelho.TabStop = false;
             this.gbAparelho.Text = "Dados do Aparelho";
             // 
+            // dtpDataEntrada
+            // 
+            this.dtpDataEntrada.Enabled = false;
+            this.dtpDataEntrada.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dtpDataEntrada.Location = new System.Drawing.Point(21, 86);
+            this.dtpDataEntrada.Name = "dtpDataEntrada";
+            this.dtpDataEntrada.Size = new System.Drawing.Size(168, 29);
+            this.dtpDataEntrada.TabIndex = 79;
+            // 
             // cbTecnico
             // 
             this.cbTecnico.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
@@ -469,7 +479,6 @@ namespace View
             this.lblIdAp.Size = new System.Drawing.Size(75, 21);
             this.lblIdAp.TabIndex = 70;
             this.lblIdAp.Text = "Id Cliente";
-            this.lblIdAp.Click += new System.EventHandler(this.lblIdAp_Click);
             // 
             // lblOrc
             // 
@@ -988,15 +997,6 @@ namespace View
             // 
             this.ep.ContainerControl = this;
             // 
-            // dtpDataEntrada
-            // 
-            this.dtpDataEntrada.Enabled = false;
-            this.dtpDataEntrada.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dtpDataEntrada.Location = new System.Drawing.Point(21, 86);
-            this.dtpDataEntrada.Name = "dtpDataEntrada";
-            this.dtpDataEntrada.Size = new System.Drawing.Size(168, 29);
-            this.dtpDataEntrada.TabIndex = 79;
-            // 
             // FormAparelho
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1009,6 +1009,7 @@ namespace View
             this.Controls.Add(this.panelTitleBar);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "FormAparelho";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "FormAparelho";

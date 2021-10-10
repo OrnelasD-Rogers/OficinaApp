@@ -75,7 +75,7 @@ namespace View
             this.btn_Vendas.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.btn_Vendas.IconSize = 32;
             this.btn_Vendas.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btn_Vendas.Location = new System.Drawing.Point(0, 200);
+            this.btn_Vendas.Location = new System.Drawing.Point(0, 269);
             this.btn_Vendas.Name = "btn_Vendas";
             this.btn_Vendas.Size = new System.Drawing.Size(200, 50);
             this.btn_Vendas.TabIndex = 4;
@@ -98,7 +98,7 @@ namespace View
             this.btn_CadAp.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.btn_CadAp.IconSize = 32;
             this.btn_CadAp.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btn_CadAp.Location = new System.Drawing.Point(0, 150);
+            this.btn_CadAp.Location = new System.Drawing.Point(0, 219);
             this.btn_CadAp.Name = "btn_CadAp";
             this.btn_CadAp.Size = new System.Drawing.Size(200, 50);
             this.btn_CadAp.TabIndex = 2;
@@ -120,7 +120,7 @@ namespace View
             this.btn_CadCli.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.btn_CadCli.IconSize = 32;
             this.btn_CadCli.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btn_CadCli.Location = new System.Drawing.Point(0, 100);
+            this.btn_CadCli.Location = new System.Drawing.Point(0, 169);
             this.btn_CadCli.Name = "btn_CadCli";
             this.btn_CadCli.Size = new System.Drawing.Size(200, 50);
             this.btn_CadCli.TabIndex = 1;
@@ -132,20 +132,21 @@ namespace View
             // 
             // panelLogo
             // 
+            this.panelLogo.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(18)))), ((int)(((byte)(18)))), ((int)(((byte)(40)))));
             this.panelLogo.Controls.Add(this.btn_Home);
             this.panelLogo.Dock = System.Windows.Forms.DockStyle.Top;
             this.panelLogo.Location = new System.Drawing.Point(0, 0);
             this.panelLogo.Name = "panelLogo";
-            this.panelLogo.Size = new System.Drawing.Size(200, 100);
+            this.panelLogo.Size = new System.Drawing.Size(200, 169);
             this.panelLogo.TabIndex = 0;
             // 
             // btn_Home
             // 
             this.btn_Home.Image = ((System.Drawing.Image)(resources.GetObject("btn_Home.Image")));
-            this.btn_Home.Location = new System.Drawing.Point(12, 12);
+            this.btn_Home.Location = new System.Drawing.Point(6, 12);
             this.btn_Home.Name = "btn_Home";
-            this.btn_Home.Size = new System.Drawing.Size(188, 71);
-            this.btn_Home.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.btn_Home.Size = new System.Drawing.Size(188, 151);
+            this.btn_Home.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.btn_Home.TabIndex = 0;
             this.btn_Home.TabStop = false;
             this.btn_Home.Click += new System.EventHandler(this.btn_Home_Click);
@@ -254,8 +255,8 @@ namespace View
             this.Controls.Add(this.panelShadow);
             this.Controls.Add(this.panelTitleBar);
             this.Controls.Add(this.panelMenu);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "FormHome";
-            this.ShowIcon = false;
             this.Text = "Home";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.panelMenu.ResumeLayout(false);

@@ -51,6 +51,12 @@
   <PropertyGroup>
     <StartupObject>View.Program</StartupObject>
   </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>icone.ico</ApplicationIcon>
+  </PropertyGroup>
+  <PropertyGroup />
+  <PropertyGroup />
+  <PropertyGroup />
   <ItemGroup>
     <Reference Include="DeltaCompressionDotNet, Version=1.1.0.0, Culture=neutral, PublicKeyToken=1d14d6e5194e7f4a, processorArchitecture=MSIL">
       <HintPath>..\packages\DeltaCompressionDotNet.1.1.0\lib\net20\DeltaCompressionDotNet.dll</HintPath>
@@ -154,6 +160,7 @@
     <Compile Include="FormPagamento.Designer.cs">
       <DependentUpon>FormPagamento.cs</DependentUpon>
     </Compile>
+    <Compile Include="MetodosBackGroundWorker\BackGroundWorkerMetodos.cs" />
     <Compile Include="MetodosGrid\MetodosDataGrid.cs" />
     <Compile Include="MetodosGrid\MetodosGridVwP.cs" />
     <Compile Include="Program.cs" />
@@ -183,7 +190,7 @@
       <DependentUpon>FormPagamento.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
+      <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
     </EmbeddedResource>
@@ -227,6 +234,13 @@
       <ProductName>.NET Framework 3.5 SP1</ProductName>
       <Install>false</Install>
     </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="icone.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\logo.png" />
+    <None Include="Resources\icone.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

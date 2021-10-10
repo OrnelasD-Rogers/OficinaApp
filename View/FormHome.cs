@@ -19,16 +19,17 @@ namespace View
         private Form currentChildForm;        
 
         public FormHome()
-        {
-            this.DoubleBuffered = true;
+        {   
+
             InitializeComponent();            
             leftBorderBtn = new Panel();
             leftBorderBtn.Size = new Size(7, 60);
             panelMenu.Controls.Add(leftBorderBtn);
             //Form
-            this.Text = string.Empty;
+            this.Text = "OficinaApp";
             this.ControlBox = false;            
-            this.MaximizedBounds = Screen.FromHandle(this.Handle).WorkingArea;            
+            this.MaximizedBounds = Screen.FromHandle(this.Handle).WorkingArea;
+            this.Icon = Properties.Resources.icone;
         }
 
  

@@ -39,37 +39,51 @@ namespace View
             this.btnSalvar = new FontAwesome.Sharp.IconButton();
             this.btnLimpar = new FontAwesome.Sharp.IconButton();
             this.pnTel1 = new System.Windows.Forms.Panel();
-            this.btnDelTel1 = new FontAwesome.Sharp.IconButton();
+            this.btnEditar1 = new FontAwesome.Sharp.IconButton();
             this.mtbNum1 = new System.Windows.Forms.MaskedTextBox();
             this.lblNum1 = new System.Windows.Forms.Label();
             this.cbTipo1 = new System.Windows.Forms.ComboBox();
             this.label5 = new System.Windows.Forms.Label();
             this.btnAddTel2 = new FontAwesome.Sharp.IconButton();
             this.chWhats1 = new System.Windows.Forms.CheckBox();
+            this.btnDelTel1 = new FontAwesome.Sharp.IconButton();
             this.pnTel2 = new System.Windows.Forms.Panel();
+            this.btnEditar2 = new FontAwesome.Sharp.IconButton();
             this.mtbNum2 = new System.Windows.Forms.MaskedTextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.cbTipo2 = new System.Windows.Forms.ComboBox();
             this.label3 = new System.Windows.Forms.Label();
             this.btnAddTel3 = new FontAwesome.Sharp.IconButton();
             this.chWhats2 = new System.Windows.Forms.CheckBox();
+            this.btnDelTel2 = new FontAwesome.Sharp.IconButton();
             this.pnTel3 = new System.Windows.Forms.Panel();
+            this.btnEditar3 = new FontAwesome.Sharp.IconButton();
             this.mtbNum3 = new System.Windows.Forms.MaskedTextBox();
             this.label7 = new System.Windows.Forms.Label();
             this.cbTipo3 = new System.Windows.Forms.ComboBox();
             this.label8 = new System.Windows.Forms.Label();
             this.chWhats3 = new System.Windows.Forms.CheckBox();
+            this.btnDelTel3 = new FontAwesome.Sharp.IconButton();
             this.label9 = new System.Windows.Forms.Label();
             this.mtbCpf = new System.Windows.Forms.MaskedTextBox();
             this.btn_Close = new FontAwesome.Sharp.IconButton();
             this.pnDadosCli = new System.Windows.Forms.Panel();
-            this.btnDelTel2 = new FontAwesome.Sharp.IconButton();
-            this.btnDelTel3 = new FontAwesome.Sharp.IconButton();
+            this.pnEdicao1 = new System.Windows.Forms.Panel();
+            this.btnSalvarEdicao1 = new FontAwesome.Sharp.IconButton();
+            this.pnEdicao2 = new System.Windows.Forms.Panel();
+            this.btnSalvarEdicao2 = new FontAwesome.Sharp.IconButton();
+            this.pnEdicao3 = new System.Windows.Forms.Panel();
+            this.btnSalvarEdicao3 = new FontAwesome.Sharp.IconButton();
+            this.bgwCliente = new System.ComponentModel.BackgroundWorker();
+            this.bgwTelefones = new System.ComponentModel.BackgroundWorker();
             ((System.ComponentModel.ISupportInitialize)(this.ep)).BeginInit();
             this.pnTel1.SuspendLayout();
             this.pnTel2.SuspendLayout();
             this.pnTel3.SuspendLayout();
             this.pnDadosCli.SuspendLayout();
+            this.pnEdicao1.SuspendLayout();
+            this.pnEdicao2.SuspendLayout();
+            this.pnEdicao3.SuspendLayout();
             this.SuspendLayout();
             // 
             // tbNome
@@ -77,7 +91,7 @@ namespace View
             this.tbNome.Font = new System.Drawing.Font("Ebrima", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tbNome.Location = new System.Drawing.Point(12, 31);
             this.tbNome.Name = "tbNome";
-            this.tbNome.Size = new System.Drawing.Size(310, 29);
+            this.tbNome.Size = new System.Drawing.Size(318, 29);
             this.tbNome.TabIndex = 0;
             // 
             // label1
@@ -100,7 +114,7 @@ namespace View
             "Feminino"});
             this.cbSexo.Location = new System.Drawing.Point(182, 87);
             this.cbSexo.Name = "cbSexo";
-            this.cbSexo.Size = new System.Drawing.Size(140, 29);
+            this.cbSexo.Size = new System.Drawing.Size(148, 29);
             this.cbSexo.TabIndex = 17;
             // 
             // label6
@@ -163,7 +177,7 @@ namespace View
             // 
             // pnTel1
             // 
-            this.pnTel1.Controls.Add(this.btnDelTel1);
+            this.pnTel1.Controls.Add(this.btnEditar1);
             this.pnTel1.Controls.Add(this.mtbNum1);
             this.pnTel1.Controls.Add(this.lblNum1);
             this.pnTel1.Controls.Add(this.cbTipo1);
@@ -172,30 +186,31 @@ namespace View
             this.pnTel1.Controls.Add(this.chWhats1);
             this.pnTel1.Location = new System.Drawing.Point(388, 175);
             this.pnTel1.Name = "pnTel1";
-            this.pnTel1.Size = new System.Drawing.Size(459, 68);
+            this.pnTel1.Size = new System.Drawing.Size(465, 68);
             this.pnTel1.TabIndex = 26;
+            this.pnTel1.Visible = false;
             // 
-            // btnDelTel1
+            // btnEditar1
             // 
-            this.btnDelTel1.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.btnDelTel1.FlatAppearance.BorderSize = 0;
-            this.btnDelTel1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnDelTel1.IconChar = FontAwesome.Sharp.IconChar.TrashAlt;
-            this.btnDelTel1.IconColor = System.Drawing.Color.White;
-            this.btnDelTel1.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.btnDelTel1.IconSize = 25;
-            this.btnDelTel1.Location = new System.Drawing.Point(10, 27);
-            this.btnDelTel1.Name = "btnDelTel1";
-            this.btnDelTel1.Size = new System.Drawing.Size(23, 21);
-            this.btnDelTel1.TabIndex = 33;
-            this.btnDelTel1.UseVisualStyleBackColor = true;
-            this.btnDelTel1.Visible = false;
-            this.btnDelTel1.Click += new System.EventHandler(this.btnDelTel1_Click);
+            this.btnEditar1.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.btnEditar1.FlatAppearance.BorderSize = 0;
+            this.btnEditar1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnEditar1.IconChar = FontAwesome.Sharp.IconChar.Edit;
+            this.btnEditar1.IconColor = System.Drawing.Color.White;
+            this.btnEditar1.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.btnEditar1.IconSize = 30;
+            this.btnEditar1.Location = new System.Drawing.Point(12, 27);
+            this.btnEditar1.Name = "btnEditar1";
+            this.btnEditar1.Size = new System.Drawing.Size(32, 29);
+            this.btnEditar1.TabIndex = 34;
+            this.btnEditar1.UseVisualStyleBackColor = true;
+            this.btnEditar1.Visible = false;
+            this.btnEditar1.Click += new System.EventHandler(this.btnEditar1_Click);
             // 
             // mtbNum1
             // 
             this.mtbNum1.Font = new System.Drawing.Font("Ebrima", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.mtbNum1.Location = new System.Drawing.Point(166, 27);
+            this.mtbNum1.Location = new System.Drawing.Point(188, 27);
             this.mtbNum1.Name = "mtbNum1";
             this.mtbNum1.Size = new System.Drawing.Size(143, 29);
             this.mtbNum1.TabIndex = 2;
@@ -205,7 +220,7 @@ namespace View
             // 
             this.lblNum1.AutoSize = true;
             this.lblNum1.Font = new System.Drawing.Font("Ebrima", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblNum1.Location = new System.Drawing.Point(164, 3);
+            this.lblNum1.Location = new System.Drawing.Point(186, 3);
             this.lblNum1.Name = "lblNum1";
             this.lblNum1.Size = new System.Drawing.Size(68, 21);
             this.lblNum1.TabIndex = 3;
@@ -219,7 +234,7 @@ namespace View
             this.cbTipo1.Items.AddRange(new object[] {
             "Celular",
             "Fixo"});
-            this.cbTipo1.Location = new System.Drawing.Point(72, 27);
+            this.cbTipo1.Location = new System.Drawing.Point(94, 27);
             this.cbTipo1.Name = "cbTipo1";
             this.cbTipo1.Size = new System.Drawing.Size(72, 29);
             this.cbTipo1.TabIndex = 4;
@@ -229,7 +244,7 @@ namespace View
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Ebrima", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(68, 3);
+            this.label5.Location = new System.Drawing.Point(90, 3);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(40, 21);
             this.label5.TabIndex = 5;
@@ -244,7 +259,7 @@ namespace View
             this.btnAddTel2.IconColor = System.Drawing.Color.ForestGreen;
             this.btnAddTel2.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.btnAddTel2.IconSize = 25;
-            this.btnAddTel2.Location = new System.Drawing.Point(43, 27);
+            this.btnAddTel2.Location = new System.Drawing.Point(65, 31);
             this.btnAddTel2.Name = "btnAddTel2";
             this.btnAddTel2.Size = new System.Drawing.Size(23, 21);
             this.btnAddTel2.TabIndex = 21;
@@ -255,16 +270,32 @@ namespace View
             // 
             this.chWhats1.AutoSize = true;
             this.chWhats1.Font = new System.Drawing.Font("Ebrima", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.chWhats1.Location = new System.Drawing.Point(332, 29);
+            this.chWhats1.Location = new System.Drawing.Point(354, 29);
             this.chWhats1.Name = "chWhats1";
             this.chWhats1.Size = new System.Drawing.Size(108, 25);
             this.chWhats1.TabIndex = 6;
             this.chWhats1.Text = "WhatsApp?";
             this.chWhats1.UseVisualStyleBackColor = true;
             // 
+            // btnDelTel1
+            // 
+            this.btnDelTel1.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.btnDelTel1.FlatAppearance.BorderSize = 0;
+            this.btnDelTel1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnDelTel1.IconChar = FontAwesome.Sharp.IconChar.TrashAlt;
+            this.btnDelTel1.IconColor = System.Drawing.Color.White;
+            this.btnDelTel1.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.btnDelTel1.IconSize = 25;
+            this.btnDelTel1.Location = new System.Drawing.Point(3, 3);
+            this.btnDelTel1.Name = "btnDelTel1";
+            this.btnDelTel1.Size = new System.Drawing.Size(23, 21);
+            this.btnDelTel1.TabIndex = 33;
+            this.btnDelTel1.UseVisualStyleBackColor = true;
+            this.btnDelTel1.Click += new System.EventHandler(this.btnDelTel1_Click);
+            // 
             // pnTel2
             // 
-            this.pnTel2.Controls.Add(this.btnDelTel2);
+            this.pnTel2.Controls.Add(this.btnEditar2);
             this.pnTel2.Controls.Add(this.mtbNum2);
             this.pnTel2.Controls.Add(this.label2);
             this.pnTel2.Controls.Add(this.cbTipo2);
@@ -273,13 +304,31 @@ namespace View
             this.pnTel2.Controls.Add(this.chWhats2);
             this.pnTel2.Location = new System.Drawing.Point(388, 249);
             this.pnTel2.Name = "pnTel2";
-            this.pnTel2.Size = new System.Drawing.Size(459, 68);
+            this.pnTel2.Size = new System.Drawing.Size(465, 68);
             this.pnTel2.TabIndex = 27;
+            this.pnTel2.Visible = false;
+            // 
+            // btnEditar2
+            // 
+            this.btnEditar2.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.btnEditar2.FlatAppearance.BorderSize = 0;
+            this.btnEditar2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnEditar2.IconChar = FontAwesome.Sharp.IconChar.Edit;
+            this.btnEditar2.IconColor = System.Drawing.Color.White;
+            this.btnEditar2.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.btnEditar2.IconSize = 30;
+            this.btnEditar2.Location = new System.Drawing.Point(12, 27);
+            this.btnEditar2.Name = "btnEditar2";
+            this.btnEditar2.Size = new System.Drawing.Size(32, 29);
+            this.btnEditar2.TabIndex = 39;
+            this.btnEditar2.UseVisualStyleBackColor = true;
+            this.btnEditar2.Visible = false;
+            this.btnEditar2.Click += new System.EventHandler(this.btnEditar2_Click);
             // 
             // mtbNum2
             // 
             this.mtbNum2.Font = new System.Drawing.Font("Ebrima", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.mtbNum2.Location = new System.Drawing.Point(166, 27);
+            this.mtbNum2.Location = new System.Drawing.Point(188, 27);
             this.mtbNum2.Name = "mtbNum2";
             this.mtbNum2.Size = new System.Drawing.Size(143, 29);
             this.mtbNum2.TabIndex = 2;
@@ -289,7 +338,7 @@ namespace View
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Ebrima", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(164, 3);
+            this.label2.Location = new System.Drawing.Point(186, 3);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(68, 21);
             this.label2.TabIndex = 3;
@@ -303,7 +352,7 @@ namespace View
             this.cbTipo2.Items.AddRange(new object[] {
             "Celular",
             "Fixo"});
-            this.cbTipo2.Location = new System.Drawing.Point(72, 27);
+            this.cbTipo2.Location = new System.Drawing.Point(94, 27);
             this.cbTipo2.Name = "cbTipo2";
             this.cbTipo2.Size = new System.Drawing.Size(72, 29);
             this.cbTipo2.TabIndex = 4;
@@ -313,7 +362,7 @@ namespace View
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Ebrima", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(65, 3);
+            this.label3.Location = new System.Drawing.Point(87, 3);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(40, 21);
             this.label3.TabIndex = 5;
@@ -328,7 +377,7 @@ namespace View
             this.btnAddTel3.IconColor = System.Drawing.Color.ForestGreen;
             this.btnAddTel3.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.btnAddTel3.IconSize = 25;
-            this.btnAddTel3.Location = new System.Drawing.Point(43, 27);
+            this.btnAddTel3.Location = new System.Drawing.Point(65, 32);
             this.btnAddTel3.Name = "btnAddTel3";
             this.btnAddTel3.Size = new System.Drawing.Size(23, 21);
             this.btnAddTel3.TabIndex = 21;
@@ -339,16 +388,32 @@ namespace View
             // 
             this.chWhats2.AutoSize = true;
             this.chWhats2.Font = new System.Drawing.Font("Ebrima", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.chWhats2.Location = new System.Drawing.Point(332, 29);
+            this.chWhats2.Location = new System.Drawing.Point(354, 29);
             this.chWhats2.Name = "chWhats2";
             this.chWhats2.Size = new System.Drawing.Size(108, 25);
             this.chWhats2.TabIndex = 6;
             this.chWhats2.Text = "WhatsApp?";
             this.chWhats2.UseVisualStyleBackColor = true;
             // 
+            // btnDelTel2
+            // 
+            this.btnDelTel2.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.btnDelTel2.FlatAppearance.BorderSize = 0;
+            this.btnDelTel2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnDelTel2.IconChar = FontAwesome.Sharp.IconChar.TrashAlt;
+            this.btnDelTel2.IconColor = System.Drawing.Color.White;
+            this.btnDelTel2.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.btnDelTel2.IconSize = 25;
+            this.btnDelTel2.Location = new System.Drawing.Point(3, 3);
+            this.btnDelTel2.Name = "btnDelTel2";
+            this.btnDelTel2.Size = new System.Drawing.Size(23, 21);
+            this.btnDelTel2.TabIndex = 34;
+            this.btnDelTel2.UseVisualStyleBackColor = true;
+            this.btnDelTel2.Click += new System.EventHandler(this.btnDelTel2_Click);
+            // 
             // pnTel3
             // 
-            this.pnTel3.Controls.Add(this.btnDelTel3);
+            this.pnTel3.Controls.Add(this.btnEditar3);
             this.pnTel3.Controls.Add(this.mtbNum3);
             this.pnTel3.Controls.Add(this.label7);
             this.pnTel3.Controls.Add(this.cbTipo3);
@@ -356,15 +421,33 @@ namespace View
             this.pnTel3.Controls.Add(this.chWhats3);
             this.pnTel3.Location = new System.Drawing.Point(388, 322);
             this.pnTel3.Name = "pnTel3";
-            this.pnTel3.Size = new System.Drawing.Size(459, 68);
+            this.pnTel3.Size = new System.Drawing.Size(465, 68);
             this.pnTel3.TabIndex = 27;
+            this.pnTel3.Visible = false;
+            // 
+            // btnEditar3
+            // 
+            this.btnEditar3.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.btnEditar3.FlatAppearance.BorderSize = 0;
+            this.btnEditar3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnEditar3.IconChar = FontAwesome.Sharp.IconChar.Edit;
+            this.btnEditar3.IconColor = System.Drawing.Color.White;
+            this.btnEditar3.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.btnEditar3.IconSize = 30;
+            this.btnEditar3.Location = new System.Drawing.Point(12, 27);
+            this.btnEditar3.Name = "btnEditar3";
+            this.btnEditar3.Size = new System.Drawing.Size(32, 29);
+            this.btnEditar3.TabIndex = 38;
+            this.btnEditar3.UseVisualStyleBackColor = true;
+            this.btnEditar3.Visible = false;
+            this.btnEditar3.Click += new System.EventHandler(this.btnEditar3_Click);
             // 
             // mtbNum3
             // 
             this.mtbNum3.Font = new System.Drawing.Font("Ebrima", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.mtbNum3.Location = new System.Drawing.Point(166, 27);
+            this.mtbNum3.Location = new System.Drawing.Point(185, 27);
             this.mtbNum3.Name = "mtbNum3";
-            this.mtbNum3.Size = new System.Drawing.Size(143, 29);
+            this.mtbNum3.Size = new System.Drawing.Size(146, 29);
             this.mtbNum3.TabIndex = 2;
             this.mtbNum3.TextMaskFormat = System.Windows.Forms.MaskFormat.ExcludePromptAndLiterals;
             // 
@@ -372,7 +455,7 @@ namespace View
             // 
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("Ebrima", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.Location = new System.Drawing.Point(162, 3);
+            this.label7.Location = new System.Drawing.Point(181, 3);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(68, 21);
             this.label7.TabIndex = 3;
@@ -386,7 +469,7 @@ namespace View
             this.cbTipo3.Items.AddRange(new object[] {
             "Celular",
             "Fixo"});
-            this.cbTipo3.Location = new System.Drawing.Point(72, 27);
+            this.cbTipo3.Location = new System.Drawing.Point(91, 27);
             this.cbTipo3.Name = "cbTipo3";
             this.cbTipo3.Size = new System.Drawing.Size(72, 29);
             this.cbTipo3.TabIndex = 4;
@@ -396,7 +479,7 @@ namespace View
             // 
             this.label8.AutoSize = true;
             this.label8.Font = new System.Drawing.Font("Ebrima", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label8.Location = new System.Drawing.Point(65, 3);
+            this.label8.Location = new System.Drawing.Point(84, 3);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(40, 21);
             this.label8.TabIndex = 5;
@@ -406,12 +489,28 @@ namespace View
             // 
             this.chWhats3.AutoSize = true;
             this.chWhats3.Font = new System.Drawing.Font("Ebrima", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.chWhats3.Location = new System.Drawing.Point(332, 29);
+            this.chWhats3.Location = new System.Drawing.Point(351, 29);
             this.chWhats3.Name = "chWhats3";
             this.chWhats3.Size = new System.Drawing.Size(108, 25);
             this.chWhats3.TabIndex = 6;
             this.chWhats3.Text = "WhatsApp?";
             this.chWhats3.UseVisualStyleBackColor = true;
+            // 
+            // btnDelTel3
+            // 
+            this.btnDelTel3.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.btnDelTel3.FlatAppearance.BorderSize = 0;
+            this.btnDelTel3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnDelTel3.IconChar = FontAwesome.Sharp.IconChar.TrashAlt;
+            this.btnDelTel3.IconColor = System.Drawing.Color.White;
+            this.btnDelTel3.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.btnDelTel3.IconSize = 25;
+            this.btnDelTel3.Location = new System.Drawing.Point(3, 3);
+            this.btnDelTel3.Name = "btnDelTel3";
+            this.btnDelTel3.Size = new System.Drawing.Size(23, 21);
+            this.btnDelTel3.TabIndex = 35;
+            this.btnDelTel3.UseVisualStyleBackColor = true;
+            this.btnDelTel3.Click += new System.EventHandler(this.btnDelTel3_Click);
             // 
             // label9
             // 
@@ -467,39 +566,93 @@ namespace View
             this.pnDadosCli.Size = new System.Drawing.Size(425, 133);
             this.pnDadosCli.TabIndex = 32;
             // 
-            // btnDelTel2
+            // pnEdicao1
             // 
-            this.btnDelTel2.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.btnDelTel2.FlatAppearance.BorderSize = 0;
-            this.btnDelTel2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnDelTel2.IconChar = FontAwesome.Sharp.IconChar.TrashAlt;
-            this.btnDelTel2.IconColor = System.Drawing.Color.White;
-            this.btnDelTel2.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.btnDelTel2.IconSize = 25;
-            this.btnDelTel2.Location = new System.Drawing.Point(10, 27);
-            this.btnDelTel2.Name = "btnDelTel2";
-            this.btnDelTel2.Size = new System.Drawing.Size(23, 21);
-            this.btnDelTel2.TabIndex = 34;
-            this.btnDelTel2.UseVisualStyleBackColor = true;
-            this.btnDelTel2.Visible = false;
-            this.btnDelTel2.Click += new System.EventHandler(this.btnDelTel2_Click);
+            this.pnEdicao1.Controls.Add(this.btnSalvarEdicao1);
+            this.pnEdicao1.Controls.Add(this.btnDelTel1);
+            this.pnEdicao1.Location = new System.Drawing.Point(249, 198);
+            this.pnEdicao1.Name = "pnEdicao1";
+            this.pnEdicao1.Size = new System.Drawing.Size(50, 29);
+            this.pnEdicao1.TabIndex = 35;
+            this.pnEdicao1.Visible = false;
             // 
-            // btnDelTel3
+            // btnSalvarEdicao1
             // 
-            this.btnDelTel3.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.btnDelTel3.FlatAppearance.BorderSize = 0;
-            this.btnDelTel3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnDelTel3.IconChar = FontAwesome.Sharp.IconChar.TrashAlt;
-            this.btnDelTel3.IconColor = System.Drawing.Color.White;
-            this.btnDelTel3.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.btnDelTel3.IconSize = 25;
-            this.btnDelTel3.Location = new System.Drawing.Point(12, 27);
-            this.btnDelTel3.Name = "btnDelTel3";
-            this.btnDelTel3.Size = new System.Drawing.Size(23, 21);
-            this.btnDelTel3.TabIndex = 35;
-            this.btnDelTel3.UseVisualStyleBackColor = true;
-            this.btnDelTel3.Visible = false;
-            this.btnDelTel3.Click += new System.EventHandler(this.btnDelTel3_Click);
+            this.btnSalvarEdicao1.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.btnSalvarEdicao1.FlatAppearance.BorderSize = 0;
+            this.btnSalvarEdicao1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnSalvarEdicao1.IconChar = FontAwesome.Sharp.IconChar.Save;
+            this.btnSalvarEdicao1.IconColor = System.Drawing.Color.White;
+            this.btnSalvarEdicao1.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.btnSalvarEdicao1.IconSize = 25;
+            this.btnSalvarEdicao1.Location = new System.Drawing.Point(24, 5);
+            this.btnSalvarEdicao1.Name = "btnSalvarEdicao1";
+            this.btnSalvarEdicao1.Size = new System.Drawing.Size(23, 21);
+            this.btnSalvarEdicao1.TabIndex = 36;
+            this.btnSalvarEdicao1.UseVisualStyleBackColor = true;
+            this.btnSalvarEdicao1.Click += new System.EventHandler(this.btnSalvarEdicao1_Click);
+            // 
+            // pnEdicao2
+            // 
+            this.pnEdicao2.Controls.Add(this.btnDelTel2);
+            this.pnEdicao2.Controls.Add(this.btnSalvarEdicao2);
+            this.pnEdicao2.Location = new System.Drawing.Point(249, 252);
+            this.pnEdicao2.Name = "pnEdicao2";
+            this.pnEdicao2.Size = new System.Drawing.Size(50, 29);
+            this.pnEdicao2.TabIndex = 36;
+            this.pnEdicao2.Visible = false;
+            // 
+            // btnSalvarEdicao2
+            // 
+            this.btnSalvarEdicao2.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.btnSalvarEdicao2.FlatAppearance.BorderSize = 0;
+            this.btnSalvarEdicao2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnSalvarEdicao2.IconChar = FontAwesome.Sharp.IconChar.Save;
+            this.btnSalvarEdicao2.IconColor = System.Drawing.Color.White;
+            this.btnSalvarEdicao2.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.btnSalvarEdicao2.IconSize = 25;
+            this.btnSalvarEdicao2.Location = new System.Drawing.Point(24, 5);
+            this.btnSalvarEdicao2.Name = "btnSalvarEdicao2";
+            this.btnSalvarEdicao2.Size = new System.Drawing.Size(23, 21);
+            this.btnSalvarEdicao2.TabIndex = 36;
+            this.btnSalvarEdicao2.UseVisualStyleBackColor = true;
+            this.btnSalvarEdicao2.Click += new System.EventHandler(this.btnSalvarEdicao2_Click);
+            // 
+            // pnEdicao3
+            // 
+            this.pnEdicao3.Controls.Add(this.btnDelTel3);
+            this.pnEdicao3.Controls.Add(this.btnSalvarEdicao3);
+            this.pnEdicao3.Location = new System.Drawing.Point(249, 322);
+            this.pnEdicao3.Name = "pnEdicao3";
+            this.pnEdicao3.Size = new System.Drawing.Size(50, 29);
+            this.pnEdicao3.TabIndex = 37;
+            this.pnEdicao3.Visible = false;
+            // 
+            // btnSalvarEdicao3
+            // 
+            this.btnSalvarEdicao3.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.btnSalvarEdicao3.FlatAppearance.BorderSize = 0;
+            this.btnSalvarEdicao3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnSalvarEdicao3.IconChar = FontAwesome.Sharp.IconChar.Save;
+            this.btnSalvarEdicao3.IconColor = System.Drawing.Color.White;
+            this.btnSalvarEdicao3.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.btnSalvarEdicao3.IconSize = 25;
+            this.btnSalvarEdicao3.Location = new System.Drawing.Point(24, 5);
+            this.btnSalvarEdicao3.Name = "btnSalvarEdicao3";
+            this.btnSalvarEdicao3.Size = new System.Drawing.Size(23, 21);
+            this.btnSalvarEdicao3.TabIndex = 36;
+            this.btnSalvarEdicao3.UseVisualStyleBackColor = true;
+            this.btnSalvarEdicao3.Click += new System.EventHandler(this.btnSalvarEdicao3_Click);
+            // 
+            // bgwCliente
+            // 
+            this.bgwCliente.DoWork += new System.ComponentModel.DoWorkEventHandler(this.bgwCliente_DoWork);
+            this.bgwCliente.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.bgwCliente_RunWorkerCompleted);
+            // 
+            // bgwTelefones
+            // 
+            this.bgwTelefones.DoWork += new System.ComponentModel.DoWorkEventHandler(this.bgwTelefones_DoWork);
+            this.bgwTelefones.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.bgwTelefones_RunWorkerCompleted);
             // 
             // FormCadCli
             // 
@@ -507,6 +660,9 @@ namespace View
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(172)))), ((int)(((byte)(126)))), ((int)(((byte)(241)))));
             this.ClientSize = new System.Drawing.Size(1141, 455);
+            this.Controls.Add(this.pnEdicao3);
+            this.Controls.Add(this.pnEdicao2);
+            this.Controls.Add(this.pnEdicao1);
             this.Controls.Add(this.pnDadosCli);
             this.Controls.Add(this.btn_Close);
             this.Controls.Add(this.pnTel3);
@@ -528,6 +684,9 @@ namespace View
             this.pnTel3.PerformLayout();
             this.pnDadosCli.ResumeLayout(false);
             this.pnDadosCli.PerformLayout();
+            this.pnEdicao1.ResumeLayout(false);
+            this.pnEdicao2.ResumeLayout(false);
+            this.pnEdicao3.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -568,5 +727,16 @@ namespace View
         private FontAwesome.Sharp.IconButton btnDelTel1;
         private FontAwesome.Sharp.IconButton btnDelTel3;
         private FontAwesome.Sharp.IconButton btnDelTel2;
+        private FontAwesome.Sharp.IconButton btnEditar1;
+        private System.Windows.Forms.Panel pnEdicao1;
+        private FontAwesome.Sharp.IconButton btnSalvarEdicao1;
+        private System.Windows.Forms.Panel pnEdicao3;
+        private FontAwesome.Sharp.IconButton btnSalvarEdicao3;
+        private System.Windows.Forms.Panel pnEdicao2;
+        private FontAwesome.Sharp.IconButton btnSalvarEdicao2;
+        private FontAwesome.Sharp.IconButton btnEditar3;
+        private FontAwesome.Sharp.IconButton btnEditar2;
+        private System.ComponentModel.BackgroundWorker bgwCliente;
+        private System.ComponentModel.BackgroundWorker bgwTelefones;
     }
 }

@@ -783,7 +783,7 @@ namespace DataAccess
                 using (ConOficina())
                 {
                     ConOficina().Open();
-                    ConOficina().Execute(@"Update CLIENTES Set Nome = @Nome, Sexo = @Sexo, Cpf = @Cpf Where IdCliente =@IdCliente", new { c.IdCliente, c.Nome, c.Sexo, c.Cpf });
+                    ConOficina().Execute(@"Update Clientes Set Nome = @Nome, Sexo = @Sexo, Cpf = @Cpf Where IdCliente =@IdCliente", new { c.IdCliente, c.Nome, c.Sexo, c.Cpf });
                 }
             }
             catch (Exception e)

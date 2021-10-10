@@ -8,7 +8,7 @@ using System.ComponentModel;
 using Entities;
 using Business;
 using Business.Faturamento;
-
+using View.MetodosBackGroundWorker;
 
 namespace View
 {
@@ -28,9 +28,8 @@ namespace View
 
         public FormAparelho(FormGridPrincipal frmGP, int idAparelho)
         {
-            this.DoubleBuffered = true;
             this.idAparelho = idAparelho;
-            frmGridPrincipal = frmGP;
+            frmGridPrincipal = frmGP;            
             InitializeComponent();
             Inicializacao();
 
@@ -106,7 +105,7 @@ namespace View
                 novoAp = (Vw_GridPrincipal)dgHome.Rows[0].DataBoundItem;
                 idAparelho = novoAp.IdAparelho;
                 Inicializacao();
-                ChamaBackGroundWorker(bgwTabAparelhos);
+                BackGroundWorkerMetodos.ChamaBackGroundWorker(bgwTabAparelhos);
             }
 
         }
@@ -167,11 +166,6 @@ namespace View
         }
 
         //------------------------------------      Metodos      ----------------------------------------//
-        private void ChamaBackGroundWorker(BackgroundWorker worker)
-        {
-            if (!worker.IsBusy)
-                worker.RunWorkerAsync();
-        }
 
         private void AddFormFilho(Form form, Control controlePai)
         {
@@ -185,8 +179,9 @@ namespace View
 
         public void Inicializacao()
         {
-            ChamaBackGroundWorker(bgwPadrao);
-            ChamaBackGroundWorker(bgwTabContatos);
+            this.SuspendLayout();
+            BackGroundWorkerMetodos.ChamaBackGroundWorker(bgwPadrao);
+            BackGroundWorkerMetodos.ChamaBackGroundWorker(bgwTabContatos);            
         }
 
         private void LimparCampos()
@@ -472,14 +467,10 @@ namespace View
             if (dgContatos.Rows.Count > 0)
             {
                 dgContatos.SuspendLayout();
-                Vw_Contatos editContato = (Vw_Contatos)dgContatos.Rows[0].DataBoundItem;
+                //Vw_Contatos editContato = (Vw_Contatos)dgContatos.Rows[0].DataBoundItem;
+                Vw_Contatos editContato = (Vw_Contatos)dgContatos.SelectedRows[0].DataBoundItem;
                 AddFormFilho(new FormContato(editContato, this), tabContatos);
             }
-
-        }
-
-        private void lblIdAp_Click(object sender, EventArgs e)
-        {
 
         }
 

@@ -11,6 +11,8 @@ using System.Windows.Forms;
 using Entities;
 using Business;
 using FontAwesome.Sharp;
+using System.Threading;
+using View.MetodosBackGroundWorker;
 
 namespace View
 {
@@ -22,10 +24,20 @@ namespace View
         List<Telefones> telefonesListEdit = new List<Telefones>();
         FormHome formHome;
         FormAparelho formAparelho;
+        MaskedTextBox[] mtbNumeros;
+        ComboBox[] cbTiposArray;
+        CheckBox[] chbWhatsArray;
+        Panel[] pnTelefonesArray;
+        IconButton[] btnsEditarArray;
+        IconButton[] btnsSalvarArray;
+        IconButton[] btnAddTelArray;
+        Panel[] pnEdicoesArray;
+
         public FormCadCli(FormHome formHome)
         {
             InitializeComponent();
             this.formHome = formHome;
+            PreencheArrays();
             InicializarCadastro();
         }
 
@@ -34,72 +46,94 @@ namespace View
             InitializeComponent();
             this.formAparelho = formAparelho;
             this.idCli = idCli;
+            PreencheArrays();
+            AlinharPaineisAoMeio();
             InicializarEdicao();
         }
 
+
+
         //----------------------------------------- Inicializações ----------------------------------------//
 
+        /// <summary>
+        /// Método de inicialização para quando o Formulário é chamado para o Cadastro de um novo Cliente
+        /// </summary>
         private void InicializarCadastro()
         {
+
             tbNome.Text = string.Empty;
             cbSexo.Text = "Masculino";
             mtbCpf.Clear();
             mtbCpf.Mask = cpfMask;
-            LimparControlesPanel(pnTel1);
+            LimpaControlesPaineisTelefone();
             pnTel1.Show();
             pnTel2.Hide();
             pnTel3.Hide();
-            PosicionaBotoes(pnTel1, pnTel1);
+            PosicionaBotoes(0);
             AlteraCheckBoxes(cbTipo1, chWhats1);
             AlteraCheckBoxes(cbTipo2, chWhats2);
             AlteraCheckBoxes(cbTipo3, chWhats3);
+
         }
 
-
+        /// <summary>
+        /// Método chamado durante a edição de um cliente já existente
+        /// </summary>
         private void InicializarEdicao()
         {
+            LimpaControlesPaineisTelefone();
+            BackGroundWorkerMetodos.ChamaBackGroundWorker(bgwCliente);
+            BackGroundWorkerMetodos.ChamaBackGroundWorker(bgwTelefones);
             this.Name = "FormEditarCli";
-            btnDelTel1.Hide();
-            btnDelTel2.Hide();
-            btnDelTel3.Hide();
-            AlinharPanelAoMeio(pnDadosCli);
-            AlinharPanelAoMeio(pnTel1);
-            AlinharPanelAoMeio(pnTel2);
-            AlinharPanelAoMeio(pnTel3);
-            pnTel2.Hide();
-            pnTel3.Hide();
             btn_Close.Show();
             btnLimpar.Enabled = false;
-            GetClienteInfo(idCli);
-            PreencheCliente();
-            PreencheTelefones();
-            AlteraCheckBoxes(cbTipo1, chWhats1);
-            AlteraCheckBoxes(cbTipo2, chWhats2);
-            AlteraCheckBoxes(cbTipo3, chWhats3);
+        }
+
+        /// <summary>
+        /// Preenche os Arrays criandos no escopo global do formulário
+        /// </summary>
+        private void PreencheArrays()
+        {
+            pnEdicoesArray = new Panel[] { pnEdicao1, pnEdicao2, pnEdicao3 };
+            btnsSalvarArray = new IconButton[] { btnSalvarEdicao1, btnSalvarEdicao2, btnSalvarEdicao3 };
+            btnsEditarArray = new IconButton[] { btnEditar1, btnEditar2, btnEditar3 };
+            btnAddTelArray = new IconButton[] { btnAddTel2, btnAddTel3 };
+            pnTelefonesArray = new Panel[] { pnTel1, pnTel2, pnTel3 };
+            mtbNumeros = new MaskedTextBox[] { mtbNum1, mtbNum2, mtbNum3 };
+            cbTiposArray = new ComboBox[] { cbTipo1, cbTipo2, cbTipo3 };
+            chbWhatsArray = new CheckBox[] { chWhats1, chWhats2, chWhats3 };
         }
 
 
         //--------------------------               FrontEnd            -----------------------------------//
-        private void PosicionaBotoes(Panel anterior, Panel atual)
+
+
+        /// <summary>
+        /// Centraliza todos os paineis no meio da tela
+        /// </summary>
+        private void AlinharPaineisAoMeio()
         {
-            if (atual.Visible == false)
+            AlinharPanelAoMeio(pnDadosCli);
+            foreach (Panel pn in pnTelefonesArray)
             {
-                atual.Visible = true;
-                btnSalvar.Location = CoordenatasBotoes(atual, btnSalvar);
-                btnLimpar.Location = CoordenatasBotoes(atual, btnLimpar);
-            }
-            else
-            {
-                if (atual != anterior)
-                {
-                    atual.Visible = false;
-                    LimparControlesPanel(atual);
-                    btnSalvar.Location = CoordenatasBotoes(anterior, btnSalvar);
-                    btnLimpar.Location = CoordenatasBotoes(anterior, btnLimpar);
-                }
+                AlinharPanelAoMeio(pn);
             }
         }
 
+        /// <summary>
+        /// Posiciona os Botões Salvar e Limpar abaixo de um painel contido no array de Paineis
+        /// </summary>
+        /// <param name="indice">Indice do painel qual os botões devem ser posicionados</param>
+        private void PosicionaBotoes(int indice)
+        {
+            btnSalvar.Location = CoordenatasBotoes(pnTelefonesArray[indice], btnSalvar);
+            btnLimpar.Location = CoordenatasBotoes(pnTelefonesArray[indice], btnLimpar);
+        }
+
+        /// <summary>
+        /// Centraliza um painel ao meio da tela
+        /// </summary>
+        /// <param name="panel">Painel a ser centralizado</param>
         private void AlinharPanelAoMeio(Panel panel)
         {
             int leftBorder = panel.Left;
@@ -109,6 +143,13 @@ namespace View
             int x = (totalWidth / 2) - (panelLenght) + 70;
             panel.Location = new Point(x, panel.Location.Y);
         }
+
+        /// <summary>
+        /// Gerencia as coordenatas para os botões limpar e salvar
+        /// </summary>
+        /// <param name="panel">painel que esta acima dos botoes</param>
+        /// <param name="btn">Deve ser inserido o botão limpar ou salvar</param>
+        /// <returns>Retorna um Point com a nova localização do botão</returns>
         private Point CoordenatasBotoes(Panel panel, IconButton btn)
         {
             int x = 0, y = 0;
@@ -127,19 +168,41 @@ namespace View
             }
         }
 
-        private void AlteraIconeBtnAddTel(object btnAddTel)
+        /// <summary>
+        /// Faz a alteração do icone e da cor de um dos botões btnAddTel
+        /// </summary>
+        /// <param name="btnAddTel"></param>
+        private void AlteraIconeBtnAddTel(IconButton btnAddTel)
         {
-            IconButton btn = (IconButton)btnAddTel;
-            if (btn.IconChar == IconChar.Plus)
+
+            if (btnAddTel.IconChar == IconChar.Plus)
             {
-                btn.IconChar = IconChar.Minus;
-                btn.IconColor = Color.IndianRed;
+                btnAddTel.IconChar = IconChar.Minus;
+                btnAddTel.IconColor = Color.IndianRed;
             }
             else
             {
-                btn.IconChar = IconChar.Plus;
-                btn.IconColor = Color.ForestGreen;
+                btnAddTel.IconChar = IconChar.Plus;
+                btnAddTel.IconColor = Color.ForestGreen;
             }
+        }
+
+        /// <summary>
+        /// Move e altera os paineis conforme o indice
+        /// </summary>
+        /// <param name="indice">indice do painel atual</param>
+        private void AlteraControlesParaBtnAddTel(int indice)
+        {
+            pnTelefonesArray[indice].Visible = !pnTelefonesArray[indice].Visible;
+            pnEdicoesArray[indice].Hide();
+            btnsEditarArray[indice].Show();
+            AlteraIconeBtnAddTel(btnAddTelArray[indice - 1]);
+            int i = indice - 1;
+            if (pnTelefonesArray[indice].Visible)
+            {
+                i = indice;
+            }
+            PosicionaBotoes(i);
         }
 
         //-------------------------------------------      Eventos Botões     ---------------------------------------------------//
@@ -153,51 +216,35 @@ namespace View
 
         private void btnDelTel1_Click(object sender, EventArgs e)
         {
-            DialogResult result = formAparelho.ChamaMessageBoxYesNo("Excluir este numero fará com que os contatos assossiados a este numero também sejam excluidos. Deseja Prosseguir?");
-            if (result == DialogResult.Yes)
-            {
-                MetodosBd.DeleteTelefone(telefonesListEdit[0].IdTelefone);
-                telefonesListEdit.RemoveAt(0);
-                InicializarEdicao();
-            }
+            ExcluirNumero(0);
         }
 
         private void btnDelTel2_Click(object sender, EventArgs e)
         {
-            DialogResult result = formAparelho.ChamaMessageBoxYesNo("Excluir este numero fará com que os contatos assossiados a este numero também sejam excluidos. Deseja Prosseguir?");
-            if (result == DialogResult.Yes)
-            {
-                MetodosBd.DeleteTelefone(telefonesListEdit[1].IdTelefone);
-                telefonesListEdit.RemoveAt(1);
-                InicializarEdicao();
-            }
+            ExcluirNumero(1);
         }
 
         private void btnDelTel3_Click(object sender, EventArgs e)
         {
-            DialogResult result = formAparelho.ChamaMessageBoxYesNo("Excluir este numero fará com que os contatos assossiados a este numero também sejam excluidos. Deseja Prosseguir?");
-            if (result == DialogResult.Yes)
-            {
-                MetodosBd.DeleteTelefone(telefonesListEdit[2].IdTelefone);
-                telefonesListEdit.RemoveAt(2);
-                InicializarEdicao();
-            }
+            ExcluirNumero(2);
         }
+
 
         private void btnAddTel2_Click(object sender, EventArgs e)
         {
-            if (pnTel3.Visible == false)
+            if (pnTel3.Visible == false && mtbNum2.Text.Trim().Length == 0)
             {
-                AlteraIconeBtnAddTel(sender);
-                PosicionaBotoes(pnTel1, pnTel2);
+                AlteraControlesParaBtnAddTel(1);
             }
-
         }
+
 
         private void btnAddTel3_Click(object sender, EventArgs e)
         {
-            AlteraIconeBtnAddTel(sender);
-            PosicionaBotoes(pnTel2, pnTel3);
+            if (mtbNum3.Text.Trim().Length == 0)
+            {
+                AlteraControlesParaBtnAddTel(2);
+            }
         }
 
         private void btnLimpar_Click(object sender, EventArgs e)
@@ -218,7 +265,6 @@ namespace View
         }
 
 
-
         private void btnSalvar_Click(object sender, EventArgs e)
         {
             switch (this.Name)
@@ -232,14 +278,48 @@ namespace View
             }
         }
 
+        private void btnEditar1_Click(object sender, EventArgs e)
+        {
+            AlterarEdicao(0);
+        }
+
+
+        private void btnEditar2_Click(object sender, EventArgs e)
+        {
+            AlterarEdicao(1);
+        }
+
+        private void btnEditar3_Click(object sender, EventArgs e)
+        {
+            AlterarEdicao(2);
+        }
+
+        private void btnSalvarEdicao1_Click(object sender, EventArgs e)
+        {
+            AtualizaNumero(0);
+        }
+
+        private void btnSalvarEdicao2_Click(object sender, EventArgs e)
+        {
+            AtualizaNumero(1);
+        }
+
+        private void btnSalvarEdicao3_Click(object sender, EventArgs e)
+        {
+            AtualizaNumero(2);
+        }
+
         //---------------------------------------     Metodos       -----------------------------------------------------//
 
-        //Edita Numero e Informações do Cliente
+        /// <summary>
+        /// Edita os dados do cliente e faz a adição de novos telefones durante a edição
+        /// </summary>
         private void EditarInformacoes()
         {
             List<Telefones> telefones = new List<Telefones>(ExtrairTelefones());
             Clientes cliente = new Clientes
             {
+                IdCliente = idCli,
                 Cpf = mtbCpf.Text,
                 Nome = tbNome.Text.Trim(),
                 Sexo = cbSexo.Text == "Masculino" ? 'M' : 'F'
@@ -247,57 +327,96 @@ namespace View
             if (ValidaClasses(cliente, telefones))
             {
                 EditarCliente(cliente);
-                EditarNumero();
                 AddNumero(telefones);
                 formAparelho.ChamaMessageBoxOk("Cliente Atualizado!");
-            }           
+            }
         }
-        //Edita infos do cliente
+
+        /// <summary>
+        /// Exclui um contato com base no indice passado
+        /// </summary>
+        /// <param name="indice">Deve ser o mesmo indice contido na lista telefonesListEdit</param>
+        private void ExcluirNumero(int indice)
+        {
+            if (MetodosBd.GetTelefonesByIdCli(idCli).Count <= 1)
+            {
+                ep.SetError(mtbNumeros[indice], "Não é possivel excluir este número pois o cliente só possui o mesmo cadastrado");
+                return;
+            }
+            DialogResult result = formAparelho.ChamaMessageBoxYesNo("Excluir este numero fará com que os contatos assossiados \na este numero também sejam excluidos. Deseja Prosseguir?");
+            if (result == DialogResult.Yes)
+            {
+                MetodosBd.DeleteTelefone(telefonesListEdit[indice].IdTelefone);
+                InicializarEdicao();
+                ep.SetError(mtbNumeros[indice], string.Empty);
+
+            }
+        }
+
+        /// <summary>
+        /// Faz as edições do Cliente
+        /// </summary>
+        /// <param name="cliente"></param>
         private void EditarCliente(Clientes cliente)
         {
             MetodosBd.UpdateCliente(cliente);
         }
-        //Adiciona um novo Numero enquanto o clietne está sendo editado
-        private void AddNumero(List<Telefones> telefones)
-        {            
-            
+
+        /// <summary>
+        /// Compara os números de telefones no banco de dados com os contidos dentro dos telefones extraindos. 
+        /// Se forem iguais, eles serão adicionados ao banco de dados
+        /// </summary>
+        /// <param name="telefonesExtraidos">Telefones contidos em cada Painel</param>
+        private void AddNumero(List<Telefones> telefonesExtraidos)
+        {
+
             List<Telefones> newTels = new List<Telefones>();
-            newTels = telefones.Except(telefonesListEdit).ToList();
+            newTels = telefonesExtraidos.Except(telefonesListEdit).ToList();
             //salvar newTels no bd
             foreach (Telefones tel in newTels)
             {
                 tel.Id_Cliente = idCli;
                 MetodosBd.InsertTelefone(tel);
             }
+            InicializarEdicao();
         }
-        //Edita o numero do cliente
-        private void EditarNumero()
+
+        /// <summary>
+        /// Atualiza os numeros já existentes e que foram editados
+        /// </summary>
+        /// <param name="indice"></param>
+        private void AtualizaNumero(int indice)
         {
-            MaskedTextBox[] maskeds = new MaskedTextBox[] { mtbNum1, mtbNum2, mtbNum3 };
-            ComboBox[] combos = new ComboBox[] { cbTipo1, cbTipo2, cbTipo3 };
-            CheckBox[] checks = new CheckBox[] { chWhats1, chWhats2, chWhats3 };
-
-            for (int i = 0; i < telefonesListEdit.Count; i++)
+            Telefones telefoneEditado = ExtrairNumero(indice);
+            if (telefoneEditado.ValidaTelefone(mtbNumeros[indice], ep))
             {
-                //Se o Id for != 0, significa que o numero existe no banco.
-                //Se o numero contido na lista for diferente do numero contido na maskedBox, ele então precisa ser editado
-                if (telefonesListEdit[i].IdTelefone != 0 && telefonesListEdit[i].Numero != maskeds[i].Text)
-                {
-                    telefonesListEdit[i].Tipo = (Tipo)Enum.Parse(typeof(Tipo), combos[i].Text, true);
-                    telefonesListEdit[i].Numero = maskeds[i].Text;
-                    telefonesListEdit[i].Whats = checks[i].Checked;
-                    //BdUpdate
-                    MetodosBd.UpdateTelefone(telefonesListEdit[i]);
-                }
-                if (telefonesListEdit[i].IdTelefone != 0 && telefonesListEdit[i].Whats != checks[i].Checked)
-                {                    
-                    telefonesListEdit[i].Whats = checks[i].Checked;
-                    //BdUpdate
-                    MetodosBd.UpdateTelefone(telefonesListEdit[i]);
-                }
+                MetodosBd.UpdateTelefone(telefoneEditado);
+                btnsEditarArray[indice].Show();
+                pnEdicoesArray[indice].Hide();
+                AlterarEdicoesCampos(indice, false);
             }
+
         }
 
+        /// <summary>
+        /// Faz a extração dos campos dos controles filhos contidos dentro de um panel
+        /// </summary>
+        /// <param name="indice">Indice do panel a ter os dados extraídos</param>
+        /// <returns></returns>
+        private Telefones ExtrairNumero(int indice)
+        {
+            return new Telefones
+            {
+                IdTelefone = telefonesListEdit[indice].IdTelefone,
+                Numero = mtbNumeros[indice].Text.Trim(),
+                Tipo = (Tipo)Enum.Parse(typeof(Tipo), cbTiposArray[indice].Text, true),
+                Whats = chbWhatsArray[indice].Checked
+            };
+        }
+
+        /// <summary>
+        /// Extrai os dados do cliente e faz seu cadastro caso seus dados sejam validados
+        /// </summary>
         private void CadastraCliente()
         {
             List<Telefones> telefones = new List<Telefones>();
@@ -331,7 +450,6 @@ namespace View
                             InicializarCadastro();
                             break;
                     }
-
                 }
                 catch (Exception er)
                 {
@@ -340,7 +458,10 @@ namespace View
             }
         }
 
-        private void PreencheCliente()
+        /// <summary>
+        /// Preenche os dados do Cliente
+        /// </summary>
+        private void PreencheCliente(Vw_GridPrincipal cliente)
         {
             tbNome.Text = cliente.Nome;
             mtbCpf.Mask = cpfMask;
@@ -348,126 +469,144 @@ namespace View
             cbSexo.SelectedIndex = cliente.Sexo == 'M' ? 0 : 1;
         }
 
-        //Preenche os telefones durante a edição conforme o numero de telefones contidos na telefonesListEdit 
+        /// <summary>
+        /// Preenche os telefones durante a edição conforme o numero de telefones contidos na telefonesListEdit 
+        /// </summary>
         private void PreencheTelefones()
         {
-            Panel[] pnTelefones = new Panel[] { pnTel1, pnTel2, pnTel3 };
-            MaskedTextBox[] maskeds = new MaskedTextBox[] { mtbNum1, mtbNum2, mtbNum3 };
-            ComboBox[] combos = new ComboBox[] { cbTipo1, cbTipo2, cbTipo3 };
-            CheckBox[] checks = new CheckBox[] { chWhats1, chWhats2, chWhats3 };
-            IconButton[] btnsDelTel = new IconButton[] { btnDelTel1, btnDelTel2, btnDelTel3 };
+
+            this.SuspendLayout();
+            foreach (Panel pn in pnTelefonesArray)
+            {
+                pn.Hide();
+            }
+            foreach (IconButton btn in btnAddTelArray)
+            {
+                btn.IconChar = IconChar.Plus;
+                btn.IconColor = Color.ForestGreen;
+            }
+
             int count = telefonesListEdit.Count;
             for (int i = 0; i < count; i++)
             {
-                pnTelefones[i].Show();
-                maskeds[i].Text = telefonesListEdit[i].Numero;
-                combos[i].SelectedItem = telefonesListEdit[i].Tipo.ToString();
-                checks[i].Checked = telefonesListEdit[i].Whats;
-                btnsDelTel[i].Visible = true;
-            }
 
-            switch (count)
-            {
-                case 2:
-                    PosicionaBotoes(pnTel1, pnTel2);
-                    AlteraIconeBtnAddTel(btnAddTel2);
-                    break;
-                case 3:
-                    PosicionaBotoes(pnTel2, pnTel3);
-                    AlteraIconeBtnAddTel(btnAddTel2);
-                    AlteraIconeBtnAddTel(btnAddTel3);
-                    break;
-                default:
-                    PosicionaBotoes(pnTel1, pnTel1);
-                    btnDelTel1.Visible = false;
-                    break;
+                //Preenche campos
+                mtbNumeros[i].Text = telefonesListEdit[i].Numero;
+                cbTiposArray[i].SelectedItem = telefonesListEdit[i].Tipo.ToString();
+                chbWhatsArray[i].Checked = telefonesListEdit[i].Whats;
+                pnTelefonesArray[i].Show();
+                //
+                //Altera campos
+                AlterarEdicoesCampos(i, false);
+                btnsEditarArray[i].Show();
+                pnEdicoesArray[i].Hide();
+                AlteraCheckBoxes(cbTiposArray[i], chbWhatsArray[i]);
+                //
+                AlteraBtnAddTelEdicao(i);
             }
+            PosicionaBotoes(count - 1);
+            this.ResumeLayout();
         }
 
-        //Pega os Dados do Cliente
-        private void GetClienteInfo(int idCli)
+        /// <summary>
+        /// Altera o icone e a cor dos botões btnAddTel durante a edição
+        /// </summary>
+        /// <param name="indice">indice do panel atual</param>
+        private void AlteraBtnAddTelEdicao(int indice)
         {
-            // Este Metodo Pega apenas o IdCliente, Nome, Cpf, Sexo, Numero.
-            cliente = MetodosBd.GetClienteById(idCli).FirstOrDefault();
-            telefonesListEdit = MetodosBd.GetTelefonesByIdCli(idCli);
+            if (indice > 0)
+            {
+                if (mtbNumeros[indice].Text != string.Empty)
+                {
+                    AlteraIconeBtnAddTel(btnAddTelArray[indice - 1]);
+                }
+            }
         }
+
 
         //Define uma mascara a ComboBox Associada
-        private void MascaraNumero(object cbtipo, MaskedTextBox numero)
+        /// <summary>
+        /// Define uma mascara para a MaskedTextBox associada
+        /// </summary>
+        /// <param name="cbtipo">ComboBox a ter o tipo analisado</param>
+        /// <param name="mtbNumero">MaskedTextBox a receber a máscara</param>
+        private void MascaraNumero(object cbtipo, MaskedTextBox mtbNumero)
         {
             ComboBox box = (ComboBox)cbtipo;
             switch (box.Text)
             {
                 case "Celular":
-                    numero.Mask = "(00)00000-0000";
+                    mtbNumero.Mask = "(00)00000-0000";
                     break;
                 case "Fixo":
-                    numero.Mask = "(00)0000-0000";
+                    mtbNumero.Mask = "(00)0000-0000";
                     break;
                 default:
-                    numero.Mask = "";
+                    mtbNumero.Mask = "";
                     break;
             }
 
         }
 
-        //Limpa os Controles com Base no Nome do Panel Chamado
-        private void LimparControlesPanel(Panel panel)
+
+        /// <summary>
+        /// Limpa os Controles de todos os panels de telefone
+        /// </summary>
+        private void LimpaControlesPaineisTelefone()
         {
-            switch (panel.Name)
+            foreach (Panel pn in pnTelefonesArray)
             {
-                case "pnTel2":
-                    cbTipo2.Text = null;
-                    mtbNum2.Clear();
-                    MascaraNumero(cbTipo2, mtbNum2);
-                    chWhats2.Checked = false;
-                    break;
-                case "pnTel3":
-                    cbTipo3.Text = null;
-                    mtbNum3.Clear();
-                    MascaraNumero(cbTipo3, mtbNum3);
-                    chWhats3.Checked = false;
-                    break;
+                foreach (Control cn in pn.Controls)
+                {
+                    MaskedTextBox mtbNumero = new MaskedTextBox();
+                    ComboBox cbTipo = new ComboBox();
+                    CheckBox chbWhats = new CheckBox();
 
-                default:
-                    cbTipo1.Text = null;
-                    cbTipo2.Text = null;
-                    cbTipo3.Text = null;
-
-                    mtbNum1.Clear();
-                    MascaraNumero(cbTipo1, mtbNum1);
-                    mtbNum2.Clear();
-                    MascaraNumero(cbTipo2, mtbNum2);
-                    mtbNum3.Clear();
-                    MascaraNumero(cbTipo3, mtbNum3);
-
-                    chWhats1.Checked = false;
-                    chWhats2.Checked = false;
-                    chWhats3.Checked = false;
-                    break;
+                    if (cn is MaskedTextBox)
+                    {
+                        mtbNumero = (MaskedTextBox)cn;
+                    }
+                    if (cn is ComboBox)
+                    {
+                        cbTipo = (ComboBox)cn;
+                    }
+                    if (cn is CheckBox)
+                    {
+                        chbWhats = (CheckBox)cn;
+                    }
+                    cbTipo.Text = null;
+                    mtbNumero.Clear();
+                    MascaraNumero(cbTipo, mtbNumero);
+                    chbWhats.Checked = false;
+                }
             }
-
         }
 
-        //Ativa ou Desativa a CheckBox referenciada
-        private void AlteraCheckBoxes(object cbTipo, CheckBox chbWhats)
+        /// <summary>
+        /// Ativa ou Desativa a CheckBox referenciada
+        /// </summary>
+        /// <param name="cbTipo">ComboBox a ter seu tipo analizado</param>
+        /// <param name="chbWhats">CheckBox qual será exibida ou não</param>
+        private void AlteraCheckBoxes(ComboBox cbTipo, CheckBox chbWhats)
         {
-            ComboBox box = (ComboBox)cbTipo;
-            if (box.Text != "Celular")
+            if (cbTipo.Text != "Celular")
             {
                 chbWhats.Hide();
+                return;
             }
-            else
-            {
-                chbWhats.Show();
-            }
+            chbWhats.Show();
+
         }
 
+        /// <summary>
+        /// Valida as Classes de Clientes e Telefones
+        /// </summary>
+        /// <param name="cliente">Cliente a ser validado</param>
+        /// <param name="telList">Lista de telefones a ser validada</param>
+        /// <returns></returns>
         private bool ValidaClasses(Clientes cliente, List<Telefones> telList)
         {
-            List<MaskedTextBox> maskeds = new List<MaskedTextBox> { mtbNum1, mtbNum2, mtbNum3 };
-            bool validado = true;            
-            
+            bool validado = true;
             //Se o Cliente não for validado, irá retornar False
             switch (this.Name)
             {
@@ -486,11 +625,11 @@ namespace View
                     }
                     break;
             }
-            
+
             //Para Cada Telefone Adicionado na Lista, Faz a Verificação
             for (int i = 0; i < telList.Count; i++)
             {
-                if (telList[i].ValidaTelefone(maskeds[i], ep) == false)
+                if (telList[i].ValidaTelefone(mtbNumeros[i], ep) == false)
                 {
                     validado = false;
                 }
@@ -505,22 +644,23 @@ namespace View
 
         }
 
+        /// <summary>
+        /// Pega os dados de todos os campos preenchidos dentro dos Paines Telefones
+        /// </summary>
+        /// <returns>Lista de Telefones</returns>
         private List<Telefones> ExtrairTelefones()
         {
-            List<MaskedTextBox> maskeds = new List<MaskedTextBox> { mtbNum1, mtbNum2, mtbNum3 };
-            List<ComboBox> boxes = new List<ComboBox> { cbTipo1, cbTipo2, cbTipo3 };
-            List<CheckBox> checks = new List<CheckBox> { chWhats1, chWhats2, chWhats3 };
             List<Telefones> telefones = new List<Telefones>();
 
-            for (int i = 0; i < maskeds.Count; i++)
+            for (int i = 0; i < mtbNumeros.Length; i++)
             {
-                if (maskeds[i].Text.Trim() != string.Empty)
+                if (mtbNumeros[i].Text.Trim() != string.Empty)
                 {
                     Telefones tel = new Telefones
                     {
-                        Numero = maskeds[i].Text.Trim(),
-                        Tipo = (Tipo)Enum.Parse(typeof(Tipo), boxes[i].Text, true),
-                        Whats = checks[i].Checked
+                        Numero = mtbNumeros[i].Text.Trim(),
+                        Tipo = (Tipo)Enum.Parse(typeof(Tipo), cbTiposArray[i].Text, true),
+                        Whats = chbWhatsArray[i].Checked
                     };
                     telefones.Add(tel);
                 }
@@ -529,24 +669,90 @@ namespace View
 
         }
 
+        /// <summary>
+        /// Habilida e desabilida os campos dentro dos paines Telefones para edição
+        /// </summary>
+        /// <param name="indice">indice do painel que estão contidos os controles de telefone</param>
+        /// <param name="habilitado">diz se devem ser habilitados ou não para edição</param>
+        private void AlterarEdicoesCampos(int indice, bool habilitado)
+        {
+            //Caso os campos estejam ativados, eles são desativados
+            switch (habilitado)
+            {
+                case true:
+                    cbTiposArray[indice].Enabled = true;
+                    mtbNumeros[indice].ReadOnly = false;
+                    chbWhatsArray[indice].Enabled = true;
+                    break;
+
+                default:
+                    cbTiposArray[indice].Enabled = false;
+                    mtbNumeros[indice].ReadOnly = true;
+                    chbWhatsArray[indice].Enabled = false;
+                    break;
+            }
+        }
+
+        /// <summary>
+        /// Altera os botões e paineis para edição de um número
+        /// </summary>
+        /// <param name="indice">Indice do painel a ter suas informações editadas</param>
+        private void AlterarEdicao(int indice)
+        {
+            pnTelefonesArray[indice].Controls.Add(pnEdicoesArray[indice]);
+            pnEdicoesArray[indice].Location = btnsEditarArray[indice].Location;
+            btnsEditarArray[indice].Hide();
+            pnEdicoesArray[indice].Show();
+            AlterarEdicoesCampos(indice, true);
+        }
+
         //---------------------- Eventos Combo Boxes --------------------------------//
         private void cbTipo1_SelectedIndexChanged(object sender, EventArgs e)
         {
             MascaraNumero(sender, mtbNum1);
-            AlteraCheckBoxes(sender, chWhats1);
+            AlteraCheckBoxes(cbTipo1, chWhats1);
         }
 
         private void cbTipo2_SelectedIndexChanged(object sender, EventArgs e)
         {
             MascaraNumero(sender, mtbNum2);
-            AlteraCheckBoxes(sender, chWhats2);
+            AlteraCheckBoxes(cbTipo2, chWhats2);
         }
 
         private void cbTipo3_SelectedIndexChanged(object sender, EventArgs e)
         {
             MascaraNumero(sender, mtbNum3);
-            AlteraCheckBoxes(sender, chWhats3);
+            AlteraCheckBoxes(cbTipo3, chWhats3);
         }
-        
+
+
+        //---------------------BackGroundWorkers-------------------------------//
+
+
+        //Telefones
+        private void bgwTelefones_DoWork(object sender, DoWorkEventArgs e)
+        {
+            telefonesListEdit = null;
+            telefonesListEdit = MetodosBd.GetTelefonesByIdCli(idCli);
+        }
+
+        //Telefones
+        private void bgwTelefones_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
+        {
+            PreencheTelefones();
+        }
+
+        //Cliente
+        private void bgwCliente_DoWork(object sender, DoWorkEventArgs e)
+        {
+            cliente = null;
+            cliente = MetodosBd.GetClienteById(idCli).FirstOrDefault();
+        }
+
+        //Cliente
+        private void bgwCliente_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
+        {
+            PreencheCliente(cliente);
+        }
     }
 }
